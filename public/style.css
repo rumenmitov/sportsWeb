@@ -1,0 +1,143 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+body {
+    background-color: #fff;
+}
+
+.header {
+    min-height: 15vh;
+    width: 100%;
+    background-image: linear;
+    position: relative;
+}
+
+
+
+nav {
+    display: flex;
+    padding: 2% 6%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#logo {
+    width: 10px;
+    font-size: 25px;
+    text-decoration: none;
+    color: black;
+
+}
+
+.left-header {
+    flex: 1;
+    text-align: right;
+
+
+}
+
+.left-header ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+
+.left-header ul li a {
+    color: black;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.left-header ul li::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: black;
+    display: block;
+    margin: auto;
+    transition: 0.25s;
+}
+
+.left-header ul li:hover::after {
+    width: 100%;
+
+}
+
+
+.hero-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    border: 1px solid black;
+    padding: 12px 34px;
+    font-size: 16px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+
+.hero-btn:hover {
+    border: 1px solid #f44336;
+    background: #f44336;
+    transition: 0s;
+}
+
+a.hero-btn:hover {
+    color: white;
+}
+
+.nav .fa {
+    display: none;
+}
+
+@media(max-width: 700px) {
+    .lisbt h1 {
+        font-size: 20px;
+    }
+
+    .left-header ul li {
+        display: block;
+    }
+
+    .left-header {
+        position: absolute;
+        background: #f44336;
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200px;
+        text-align: left;
+        z-index: 2;
+    }
+}
+
+.nav .fa {
+    display: block;
+    color: #fff;
+    margin: 10px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.left-header ul {
+    padding: 30px;
+
+}
+
+/*----- lisbt -----*/
+
+img {
+    width: 80%;
+    position: relative;
+    margin: 40px;
+
+
+}
+
+
+
