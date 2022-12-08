@@ -29,9 +29,7 @@ function auth(req, res, next) {
 
 let app = express()
     .use('/admin', auth)
-    .use('/admin', (req, res, next)=>{
-        res.send('authorized');
-    })
+    .use('/admin', express.static(__dirname + "/admin", { index: 'admin.html' }))
     .use(express.static(__dirname + '/public'))
     .listen(3000);
 

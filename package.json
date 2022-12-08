@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/rumenmitov/Coding#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "mongodb": "^4.12.1"
   }
 }
