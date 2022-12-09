@@ -1,7 +1,12 @@
 let resultsTable;
-let button = document.querySelector('button');
 
-button.onclick = () => {
+let getResultsButton = document.querySelector('#getResults');
+let deleteButton = document.querySelector('#delete');
+
+getResultsButton.onclick = getResults;
+deleteButton.onclick = deleteParticipant;
+
+function getResults() {
     // First remove previos results (if any)
     if (resultsTable) resultsTable.remove();
 
@@ -46,7 +51,7 @@ button.onclick = () => {
     
     xhttp.onload = function() {
         let results = JSON.parse(this.responseText);
-
+        results = sortResults(results);
 
         for ( let i in results) {
             let newRow = document.createElement('tr');
@@ -78,5 +83,54 @@ button.onclick = () => {
             newRow.appendChild(newCellTeam);
         }
     };
-};
+}
+
+function sortResults(results) {
+    // Sorting option will take the user choice for sorting the data
+    let index = document.querySelector('#sortBySelection').selectedIndex;
+    let sortingOption = document.querySelector('#sortBySelection')[index].getAttribute('value');
+
+    if (sortingOption === 'firstName') {
+        return results.sort((a, b) => { 
+            if (a.firstName > b.firstName) return 1;
+            else if (a.firstName < b.firstName) return -1;
+            else return 0;
+        });
+    } else if (sortingOption === 'lastName') {
+        return results.sort((a, b) => { 
+            if (a.lastName > b.lastName) return 1;
+            else if (a.lastName < b.lastName) return -1;
+            else return 0;
+        });
+    } else if (sortingOption === 'dob') {
+        return results.sort((a, b) => { 
+            if (a.dob > b.dob) return 1;
+            else if (a.dob < b.dob) return -1;
+            else return 0;
+        });
+    } else if (sortingOption === 'class') {
+        return results.sort((a, b) => { 
+            if (a.class > b.class) return 1;
+            else if (a.class < b.class) return -1;
+            else return 0;
+        });
+    } else if (sortingOption === 'teamName') {
+        return results.sort((a, b) => { 
+            if (a.teamName > b.teamName) return 1;
+            else if (a.teamName < b.teamName) return -1;
+            else return 0;
+        });
+    } else return results;
+}
+
+function deleteParticipant() {
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.open("DELETE", "http://127.0.0.1:5454/signup");
+    xhttp.send({ firstName: 'Rumen' });
+    
+    xhttp.onload = () => {
+        document.write(xhttp.responseText);
+    };
+}
 

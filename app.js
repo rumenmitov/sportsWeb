@@ -15,6 +15,7 @@ router.route('/')
           let db =  client.db('basketballTournament').collection('participants')
           
           db.find().toArray((err, results)=>{
+            if (err) console.log(err);
             console.log(results);
             res.send(results)
           });
@@ -36,7 +37,23 @@ router.route('/')
             });
             next();
         }
-    });
+    })
+    .delete((req, res, next)=>{
+        // This is to delete entries in the table
+        if (req.body) {
+            MongoClient.connect('mongodb://127.0.0.1:27017', (err, client)=>{
+                if (err) console.log(err);
+
+                let db = client.db('basketballTournament').collection('participants');
+                db.deleteOne(req.body, (err, docs)=>{
+                    if (err) console.log(err);
+
+                    res.end('Participant deleted successfully!');
+                    client.close();
+                })
+            })
+        }
+    })
 
 // Finally, launching the server at port 5454
 let app = express()
