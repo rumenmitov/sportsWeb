@@ -4,7 +4,6 @@ let getResultsButton = document.querySelector('#getResults');
 let deleteButton = document.querySelector('#delete');
 
 getResultsButton.onclick = getResults;
-deleteButton.onclick = deleteParticipant;
 
 function getResults() {
     // First remove previos results (if any)
@@ -28,6 +27,11 @@ function getResults() {
     newHeaderLastName.innerHTML = 'Last Name';
     newHeaderRow.appendChild(newHeaderLastName);
 
+    // Email
+    let newHeaderEmail = document.createElement('th');
+    newHeaderEmail.innerHTML = 'Email';
+    newHeaderRow.appendChild(newHeaderEmail);
+
     // Date of Birth (DoB)
     let newHeaderDoB = document.createElement('th');
     newHeaderDoB.innerHTML = 'Date of Birth';
@@ -42,6 +46,11 @@ function getResults() {
     let newHeaderTeam = document.createElement('th');
     newHeaderTeam.innerHTML = 'Team';
     newHeaderRow.appendChild(newHeaderTeam);
+
+    // Delete Option
+    let newHeaderDelete = document.createElement('th');
+    newHeaderTeam.innerHTML = 'Delete';
+    newHeaderRow.appendChild(newHeaderDelete);
 
     // Handling data from server
     let xhttp = new XMLHttpRequest();
@@ -67,6 +76,11 @@ function getResults() {
             newCellLastName.innerHTML = results[i]['lastName'];
             newRow.appendChild(newCellLastName);
 
+            // Email
+            let newCellEmail = document.createElement('td');
+            newCellEmail.innerHTML = results[i]['email'];
+            newRow.appendChild(newCellEmail);            
+
             // Date of Birth (DoB)
             let newCellDoB = document.createElement('td');
             newCellDoB.innerHTML = results[i]['dob'];
@@ -81,6 +95,18 @@ function getResults() {
             let newCellTeam = document.createElement('td');
             newCellTeam.innerHTML = results[i]['teamName'];
             newRow.appendChild(newCellTeam);
+
+            // Delete Cell
+            let newCellDelete = document.createElement('td');
+            newRow.appendChild(newCellDelete);
+
+            // Delete Button
+            let newDeleteButton = document.createElement('button');
+            newDeleteButton.innerText = "Delete";
+            newDeleteButton.addEventListener("click", () =>{
+                deleteParticipant(results[i]['_id']);
+            });
+            newRow.appendChild(newDeleteButton);
         }
     };
 }
@@ -123,14 +149,19 @@ function sortResults(results) {
     } else return results;
 }
 
-function deleteParticipant() {
+let deleteParticipant = function(id) {
+    let AdminConfirmation = prompt(`Are you sure you want to delete the user with the email: '${id}'?\nIf you are sure please type 'CONFIRM' below.`);
+    if (AdminConfirmation !== 'CONFIRM') return;
+    console.log(id);
+
     let xhttp = new XMLHttpRequest();
 
-    xhttp.open("DELETE", "http://127.0.0.1:5454/signup");
-    xhttp.send({ firstName: 'Rumen' });
+    xhttp.open("DELETE", `http://127.0.0.1:5454/signup/${id}`);
+    xhttp.send(null);
     
     xhttp.onload = () => {
-        document.write(xhttp.responseText);
+        document.write(`${xhttp.responseText}<br><button onclick='location.href="http://127.0.0.1:3000/admin";'>Go back</button>`);
     };
 }
 
+ 
