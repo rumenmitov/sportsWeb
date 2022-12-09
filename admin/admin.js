@@ -1,7 +1,6 @@
 let resultsTable;
 
 let getResultsButton = document.querySelector('#getResults');
-let deleteButton = document.querySelector('#delete');
 
 getResultsButton.onclick = getResults;
 
@@ -150,7 +149,7 @@ function sortResults(results) {
 }
 
 let deleteParticipant = function(id) {
-    let AdminConfirmation = prompt(`Are you sure you want to delete the user with the email: '${id}'?\nIf you are sure please type 'CONFIRM' below.`);
+    let AdminConfirmation = prompt(`Are you sure you want to delete the user with the ID: '${id}'?\nIf you are sure please type 'CONFIRM' below.`);
     if (AdminConfirmation !== 'CONFIRM') return;
     console.log(id);
 
