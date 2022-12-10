@@ -1,76 +1,183 @@
 // Packages
-const express = require('express'),
-    bodyParser = require('body-parser'),
-    mongo = require('mongodb'),
-    MongoClient = mongo.MongoClient;
+const express = require("express"),
+  bodyParser = require("body-parser"),
+  nodemailer = require("nodemailer"),
+  mongo = require("mongodb"),
+  MongoClient = mongo.MongoClient;
+
+// Credentials for PC email and the email setup
+const credentials = {
+  user: "sports@pupilscom-esl1.eu",
+  pass: "8Ggut3Gb?53hznXj",
+};
+
+let nodeTransporter = nodemailer.createTransport({
+    host: "smtp.zoho.eu",
+    port: 465,
+    secure: true,
+    auth: credentials
+});
 
 // Router for signup
 let router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
 
-// This part of the router is responsible for the GET and POST
-router.route('/')
-    .get((req, res, next)=>{
-        // This is for searching the databse
-        MongoClient.connect('mongodb://127.0.0.1:27017/', (err, client)=>{
+router.route("/verify").post((req, res, next) => {
+  let recipient = req.body.email;
+
+  if (recipient.split("@")[1] !== "student.eursc.eu") {
+    res.writeHead(200, { "Content-type": "text/html" });
+    res.end(
+      'School email not recognised. Please try again. <button onclick="location.href=`http://127.0.0.1:3000/signup/verification.html`;">Try Again</button>'
+    );
+  } else {
+    MongoClient.connect("mongodb://127.0.0.1:27017/", (err, client) => {
+      if (err) console.log(err);
+
+      let db = client.db("basketballTournament").collection("participants");
+
+      // Check if participant is already signed up
+      db.find({ email: req.body.email }).toArray((err, results) => {
+        if (err) console.log(err);
+
+        let recipient = req.body.email;
+        if (results[0]) {
+          // If this is true that means email is already registered, so send email to tell user that the email is already in use
+          nodeTransporter.sendMail(
+            {
+              from: credentials.user,
+              to: recipient,
+              subject: "Email Already in Use",
+              html: `<p>Your email has already been used!</p><br><a href='http://127.0.0.1:3000/'>Back to site</a>`,
+            },
+            (err) => {
+              if (err) console.log(err);
+              res.send(
+                "This email is already in use. Please check your inbox for more information"
+              );
+            }
+          );
+        } else {
+          // If not, send verification email
+          if (recipient) {
+            nodeTransporter.sendMail(
+              {
+                from: credentials.user,
+                to: recipient,
+                subject: "Email Verification",
+                html: `<p>Click below to sign-up!</p><br><a href='http://127.0.0.1:3000/signup/signup.html?email=${recipient}'>Verify</a>`,
+              },
+              (err) => {
+                if (err) console.log(err);
+                res.send("Verification email sent. Please check your inbox");
+              }
+            );
+          }
+        }
+      });
+    });
+  }
+});
+
+// This part of the router is responsible for the GET and POST (for seeing all data and adding new participants)
+router
+  .route("/")
+  .get((req, res, next) => {
+    // This is for searching the databse
+    MongoClient.connect("mongodb://127.0.0.1:27017/", (err, client) => {
+      if (err) console.log(err);
+
+      let db = client.db("basketballTournament").collection("participants");
+
+      db.find().toArray((err, results) => {
+        if (err) console.log(err);
+        res.send(results);
+      });
+    });
+  })
+  .post((req, res, next) => {
+    // This is for adding to the database
+    if (req.body) {
+      MongoClient.connect("mongodb://127.0.0.1:27017/", (err, client) => {
+        if (err) console.log(err);
+
+        let db = client.db("basketballTournament").collection("participants");
+
+        // Check if participant is already signed up
+        db.find({ email: req.body.email }).toArray((err, results) => {
           if (err) console.log(err);
 
-          let db =  client.db('basketballTournament').collection('participants')
-          
-          db.find().toArray((err, results)=>{
-            if (err) console.log(err);
-            res.send(results)
-          });
-        });
-    })
-    .post((req, res, next)=>{
-        // This is for adding to the database
-        if (req.body) {
-            MongoClient.connect('mongodb://127.0.0.1:27017/', (err, client)=>{
+          let recipient = req.body.email;
+          if (results[0]) {
+            // If this is true that means email is already registered, so send email to tell user that the email is already in use
+
+            nodeTransporter.sendMail(
+              {
+                from: credentials.user,
+                to: recipient,
+                subject: "Email Already in Use",
+                html: `<p>Your email has already been used!</p><br><a href='http://127.0.0.1:3000/'>Back to site</a>`,
+              },
+              (err) => {
                 if (err) console.log(err);
+                res.send(
+                  "This email is already in use. Please check your inbox for more information"
+                );
+              }
+            );
+          } else {
+            db.insertOne(req.body, (err, docs) => {
+              if (err) console.log(err);
 
-                let db = client.db('basketballTournament').collection('participants');
-                db.insert(req.body, (err, docs)=>{
-                    if (err) console.log(err);
+              nodeTransporter.sendMail(
+                {
+                  from: credentials.user,
+                  to: recipient,
+                  subject: "Thank you for signing-up!",
+                  html: `<a href='http://127.0.0.1:3000/'>Back to site</a>`,
+                },
+                (err) => {
+                  if (err) console.log(err);
+                  res.send(
+                    "Good to go. Please check your inbox for more information"
+                  );
+                }
+              );
 
-                    console.log('New person added.');
-                    client.close();
-                });
+              res.send("thank you for your response");
+              console.log("New person added.");
+              client.close();
             });
-            next();
-        }
-    })
+          }
+        });
+      });
+    }
+  });
 
 // This part of the router is responsible for DELETE (because I need to find parameters to pass data to server)
-router.route('/:id')
-    .delete((req, res, next)=>{
-        // This is to delete entries in the table
-        let requestID = req.params['id'];
+router.route("/:id").delete((req, res, next) => {
+  // This is to delete entries in the table
+  let requestID = req.params["id"];
 
-        if (requestID) {
-            // Deleting users by ID (to prevent deletion of the wrong participant by accident)
-            let findKey = {"_id": mongo.ObjectId(requestID) };
-            MongoClient.connect('mongodb://127.0.0.1:27017', (err, client)=>{
-                if (err) console.log(err);
+  if (requestID) {
+    // Deleting users by ID (to prevent deletion of the wrong participant by accident)
+    let findKey = { _id: mongo.ObjectId(requestID) };
+    MongoClient.connect("mongodb://127.0.0.1:27017", (err, client) => {
+      if (err) console.log(err);
 
-                let db = client.db('basketballTournament').collection('participants');
-                db.deleteOne(findKey, (err, docs)=>{
-                    if (err) console.log(err);
+      let db = client.db("basketballTournament").collection("participants");
+      db.deleteOne(findKey, (err, docs) => {
+        if (err) console.log(err);
 
-                    console.log('Participant deleted!');
-                    res.end(`Participant with ID: ${requestID} deleted successfully!`);
-                    client.close();
-                });
-            });
-        }
+        console.log("Participant deleted.");
+        res.end(`Participant with ID: ${requestID} deleted successfully!`);
+        client.close();
+      });
     });
+  }
+});
 
 // Finally, launching the server at port 5454
-let app = express()
-    .use('/signup', router)
-    .use((req, res)=>{
-        res.send(`Thank you for your response!<br><button onclick='location.href="http://127.0.0.1:3000/signup/signup.html";'>Go back</button>`);
-    })
-    .listen(5454);
+let app = express().use("/signup", router).listen(5454);
 
-    console.log('listening on port 5454');
+console.log("listening on port 5454");

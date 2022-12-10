@@ -48,7 +48,7 @@ function getResults() {
 
     // Delete Option
     let newHeaderDelete = document.createElement('th');
-    newHeaderTeam.innerHTML = 'Delete';
+    newHeaderDelete.innerHTML = 'Delete';
     newHeaderRow.appendChild(newHeaderDelete);
 
     // Handling data from server
@@ -105,7 +105,7 @@ function getResults() {
             newDeleteButton.addEventListener("click", () =>{
                 deleteParticipant(results[i]['_id']);
             });
-            newRow.appendChild(newDeleteButton);
+            newCellDelete.appendChild(newDeleteButton);
         }
     };
 }
