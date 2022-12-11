@@ -34,6 +34,7 @@ signupForm.appendChild(emailInput);
 let submitButton = document.createElement("input");
 submitButton.setAttribute("type", "submit");
 submitButton.setAttribute("value", "Sign-up");
+submitButton.setAttribute('id', "submitButton");
 signupForm.appendChild(submitButton);
 
 teamSelect.addEventListener("click", () => {
@@ -46,10 +47,17 @@ teamSelect.addEventListener("click", () => {
 
   if (selectedOption.value === "newTeam") {
     // Then, if newTeam option is selected, create an input box
+    addNewTeamInput();
+  }
+});
+
+addNewTeamInput();
+
+function addNewTeamInput() {
     let newTeamInput = document.createElement("input");
     newTeamInput.setAttribute("id", "newTeamInput");
     newTeamInput.setAttribute("name", "newTeam");
     newTeamInput.setAttribute("placeholder", "Team name");
+    newTeamInput.setAttribute('required', 'true');
     teamSelectBox.appendChild(newTeamInput);
-  }
-});
+}

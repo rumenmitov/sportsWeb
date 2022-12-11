@@ -102,6 +102,7 @@ router
         if (err) console.log(err);
 
         let db = client.db("basketballTournament").collection("participants");
+        let dbTeams = client.db("basketballTournament").collection("teams");
 
         // Check if participant is already signed up
         db.find({ email: req.body.email }).toArray((err, results) => {
@@ -123,7 +124,7 @@ router
                 res.send(
                   "This email is already in use. Please check your inbox for more information"
                 );
-                return;
+                return next();
               }
             );
           } else {
@@ -155,56 +156,39 @@ router
                   );
                 }
               );
-
+         
               console.log("New person added.");
-              client.close();
+            });
+
+            dbTeams.find({ "team": newParticipant.team }).toArray((err, results)=>{
+              if (err) console.log(err);
+      
+              if (results[0]) {
+                // Add participant to team in Teams collection (if team already exists)
+                dbTeams.updateOne({ "team": newParticipant.team }, { $push: { teamMembers: newParticipant } }, (err)=>{
+                  if (err) console.log(err);
+        
+                  console.log('Participant added to team.');
+                  client.close();
+                });
+              } else {
+                // Create new team and add player
+                let newTeamObj = {
+                  team: newParticipant.team,
+                  teamMembers: [ newParticipant ]
+                };
+      
+                dbTeams.insertOne(newTeamObj, (err, docs)=>{
+                  if (err) console.log(err);
+      
+                  console.log('New team created.');
+                  console.log('Participant added to team.');
+                  client.close();
+                });
+              }
             });
           }
         });
-      });
-      MongoClient.connect('mongodb://127.0.0.1:27017/', (err, client)=>{
-        if (err) console.log(err);
-
-        let newParticipant = {
-          firstName: req.body.firstName,
-          lastName: req.body.lastName,
-          dob: req.body.dob,
-          class: req.body.class,
-          email: req.body.email,
-        };
-        if (req.body.team === 'newTeam') newParticipant.team = req.body.newTeam;
-        else newParticipant.team = req.body.team;
-
-        let db = client.db('basketballTournament').collection('teams');
-
-        db.find({ "team": newParticipant.team }).toArray((err, results)=>{
-          if (err) console.log(err);
-
-          if (results[0]) {
-            // Add participant to team in Teams collection (if team already exists)
-            db.updateOne({ "team": newParticipant.team }, { $push: { teamMembers: newParticipant } }, (err)=>{
-              if (err) console.log(err);
-    
-              console.log('Participant added to team.');
-              client.close();
-            });
-          } else {
-            // Create new team and add player
-            let newTeamObj = {
-              team: newParticipant.team,
-              teamMembers: [ newParticipant ]
-            };
-
-            db.insertOne(newTeamObj, (err, docs)=>{
-              if (err) console.log(err);
-
-              console.log('New team created.');
-              console.log('Participant added to team.');
-              client.close();
-            });
-          }
-        });
-
       });
     }
   });
@@ -228,16 +212,54 @@ router.route('/teams')
 // This part of the router is responsible for DELETE (because I need to find parameters to pass data to server)
 router.route("/:id").delete((req, res, next) => {
   // This is to delete entries in the table
-  let requestID = req.params["id"];
+  let requestID = JSON.parse(req.params["id"])['id'];
+  let requestTeam = JSON.parse(req.params['id'])['team'];
+  let requestEmail = JSON.parse(req.params['id'])['email'];
 
   if (requestID) {
     // Deleting users by ID (to prevent deletion of the wrong participant by accident)
-    let findKey = { _id: mongo.ObjectId(requestID) };
+    let findKeyID = { _id: mongo.ObjectId(requestID) };
+    let findKeyTeam = { team: requestTeam };
+    let findKeyEmail = { email: requestEmail };
+
+    // First delete participant from team
+    MongoClient.connect("mongodb://127.0.0.1:27017", (err, client) => {
+      if (err) console.log(err);
+
+      let db = client.db('basketballTournament').collection('teams');
+      // Find the right team
+      db.find(findKeyTeam).toArray((err, results)=>{
+        if (err) console.log(err);
+
+        // We get an array back which contains the team that we want
+        for ( let index in results[0].teamMembers) {
+          console.log(index);
+          // Find the right participant and remove them from the team
+          if (results[0].teamMembers[index].email === requestEmail) {
+            results[0].teamMembers.splice(index, 1);
+
+            db.deleteOne(findKeyTeam, (err, docs)=>{
+              if (err) console.log(err);
+              
+              // Now add the team to the collection again
+              db.insertOne(results[0], (err, docs)=>{
+                if (err) console.log(err);
+                console.log('Object added again');
+                client.close();
+              });
+            });
+            return;
+          }
+        }
+      });
+    });
+
+    // Then delete participant
     MongoClient.connect("mongodb://127.0.0.1:27017", (err, client) => {
       if (err) console.log(err);
 
       let db = client.db("basketballTournament").collection("participants");
-      db.deleteOne(findKey, (err, docs) => {
+      db.deleteOne(findKeyID, (err, docs) => {
         if (err) console.log(err);
 
         console.log("Participant deleted.");

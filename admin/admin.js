@@ -103,7 +103,7 @@ function getResults() {
             let newDeleteButton = document.createElement('button');
             newDeleteButton.innerText = "Delete";
             newDeleteButton.addEventListener("click", () =>{
-                deleteParticipant(results[i]['_id']);
+                deleteParticipant( { 'id': results[i]['_id'], 'team': results[i]['team'], 'email': results[i]['email'] });
             });
             newCellDelete.appendChild(newDeleteButton);
         }
@@ -149,6 +149,7 @@ function sortResults(results) {
 }
 
 let deleteParticipant = function(id) {
+    id = JSON.stringify(id);
     let AdminConfirmation = prompt(`Are you sure you want to delete the user with the ID: '${id}'?\nIf you are sure please type 'CONFIRM' below.`);
     if (AdminConfirmation !== 'CONFIRM') return;
     console.log(id);

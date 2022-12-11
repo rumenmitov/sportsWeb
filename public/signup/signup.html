@@ -11,13 +11,13 @@
     <p>Sign up here</p>
     <form action="http://127.0.0.1:5454/signup" method="post">
         <label for="firstName">First Name:</label>
-        <input type="text" name="firstName">
+        <input type="text" name="firstName" required>
         <label for="lastName">Last Name:</label>
-        <input type="text" name="lastName">
+        <input type="text" name="lastName" required>
         <label for="dob">Date of Birth:</label>
-        <input type="date" name="dob">
+        <input type="date" name="dob" required>
         <label for="class">Class:</label>
-        <input type="text" name="class">
+        <input type="text" name="class" required>
         <div id="teamSelectBox">
             <label for="team">Team:</label>
             <select name="team">
