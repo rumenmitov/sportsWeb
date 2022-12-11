@@ -92,7 +92,7 @@ function getResults() {
 
             // Team
             let newCellTeam = document.createElement('td');
-            newCellTeam.innerHTML = results[i]['teamName'];
+            newCellTeam.innerHTML = results[i]['team'];
             newRow.appendChild(newCellTeam);
 
             // Delete Cell
@@ -139,10 +139,10 @@ function sortResults(results) {
             else if (a.class < b.class) return -1;
             else return 0;
         });
-    } else if (sortingOption === 'teamName') {
+    } else if (sortingOption === 'team') {
         return results.sort((a, b) => { 
-            if (a.teamName > b.teamName) return 1;
-            else if (a.teamName < b.teamName) return -1;
+            if (a.team > b.team) return 1;
+            else if (a.team < b.team) return -1;
             else return 0;
         });
     } else return results;

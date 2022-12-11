@@ -123,10 +123,22 @@ router
                 res.send(
                   "This email is already in use. Please check your inbox for more information"
                 );
+                return;
               }
             );
           } else {
-            db.insertOne(req.body, (err, docs) => {
+            let newParticipant = {
+              firstName: req.body.firstName,
+              lastName: req.body.lastName,
+              dob: req.body.dob,
+              class: req.body.class,
+              email: req.body.email,
+            };
+            if (req.body.team === 'newTeam') newParticipant.team = req.body.newTeam;
+            else newParticipant.team = req.body.team;
+            
+
+            db.insertOne(newParticipant, (err, docs) => {
               if (err) console.log(err);
 
               nodeTransporter.sendMail(
@@ -144,14 +156,73 @@ router
                 }
               );
 
-              res.send("thank you for your response");
               console.log("New person added.");
               client.close();
             });
           }
         });
       });
+      MongoClient.connect('mongodb://127.0.0.1:27017/', (err, client)=>{
+        if (err) console.log(err);
+
+        let newParticipant = {
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          dob: req.body.dob,
+          class: req.body.class,
+          email: req.body.email,
+        };
+        if (req.body.team === 'newTeam') newParticipant.team = req.body.newTeam;
+        else newParticipant.team = req.body.team;
+
+        let db = client.db('basketballTournament').collection('teams');
+
+        db.find({ "team": newParticipant.team }).toArray((err, results)=>{
+          if (err) console.log(err);
+
+          if (results[0]) {
+            // Add participant to team in Teams collection (if team already exists)
+            db.updateOne({ "team": newParticipant.team }, { $push: { teamMembers: newParticipant } }, (err)=>{
+              if (err) console.log(err);
+    
+              console.log('Participant added to team.');
+              client.close();
+            });
+          } else {
+            // Create new team and add player
+            let newTeamObj = {
+              team: newParticipant.team,
+              teamMembers: [ newParticipant ]
+            };
+
+            db.insertOne(newTeamObj, (err, docs)=>{
+              if (err) console.log(err);
+
+              console.log('New team created.');
+              console.log('Participant added to team.');
+              client.close();
+            });
+          }
+        });
+
+      });
     }
+  });
+
+// This part of the router is responsible for handling the teams
+router.route('/teams')
+  .get((req, res)=>{
+    MongoClient.connect('mongodb://127.0.0.1:27017/', (err, client)=>{
+      if (err) console.log(err);
+
+      let db = client.db('basketballTournament').collection('teams');
+
+      db.find().toArray((err, results)=>{
+        if (err) console.log(err);
+
+        res.send(results);
+      });
+    });
   });
 
 // This part of the router is responsible for DELETE (because I need to find parameters to pass data to server)
