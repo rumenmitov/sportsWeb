@@ -53,6 +53,10 @@ teamSelect.addEventListener("click", () => {
 
 addNewTeamInput();
 
+signupForm.addEventListener("submit", ()=>{
+  submitButton.remove();
+});
+
 function addNewTeamInput() {
     let newTeamInput = document.createElement("input");
     newTeamInput.setAttribute("id", "newTeamInput");
