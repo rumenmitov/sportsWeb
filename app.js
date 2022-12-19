@@ -5,6 +5,9 @@ const express = require("express"),
   mongo = require("mongodb"),
   MongoClient = mongo.MongoClient;
 
+// URL for MongoDB Atlas
+const AtlasUrl = "mongodb+srv://pc:TVy66E2FsyndJfWl@sportswebsite.pracljv.mongodb.net/?retryWrites=true&w=majority"
+
 // Credentials for PC email and the email setup
 const credentials = {
   user: "sports@pupilscom-esl1.eu",
@@ -31,7 +34,8 @@ router.route("/verify").post((req, res, next) => {
       'School email not recognised. Please try again. <button onclick="location.href=`http://127.0.0.1:3000/signup/verification.html`;">Try Again</button>'
     );
   } else {
-    MongoClient.connect("mongodb://127.0.0.1:27017/", (err, client) => {
+    let client = new MongoClient(AtlasUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+    client.connect((err) => {
       if (err) console.log(err);
 
       let db = client.db("basketballTournament").collection("participants");
@@ -84,7 +88,8 @@ router
   .route("/")
   .get((req, res, next) => {
     // This is for searching the databse
-    MongoClient.connect("mongodb://127.0.0.1:27017/", (err, client) => {
+    let client = new MongoClient(AtlasUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+    client.connect((err) => {
       if (err) console.log(err);
 
       let db = client.db("basketballTournament").collection("participants");
@@ -98,7 +103,8 @@ router
   .post((req, res, next) => {
     // This is for adding to the database
     if (req.body) {
-      MongoClient.connect("mongodb://127.0.0.1:27017/", (err, client) => {
+      let client = new MongoClient(AtlasUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+      client.connect((err) => {
         if (err) console.log(err);
 
         let db = client.db("basketballTournament").collection("participants");
@@ -196,7 +202,8 @@ router
 // This part of the router is responsible for handling the teams
 router.route('/teams')
   .get((req, res)=>{
-    MongoClient.connect('mongodb://127.0.0.1:27017/', (err, client)=>{
+    let client = new MongoClient(AtlasUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+    client.connect((err)=>{
       if (err) console.log(err);
 
       let db = client.db('basketballTournament').collection('teams');
@@ -223,10 +230,11 @@ router.route("/:id").delete((req, res, next) => {
     let findKeyEmail = { email: requestEmail };
 
     // First delete participant from team
-    MongoClient.connect("mongodb://127.0.0.1:27017", (err, client) => {
+    let teamClient = new MongoClient(AtlasUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+    teamClient.connect((err) => {
       if (err) console.log(err);
 
-      let db = client.db('basketballTournament').collection('teams');
+      let db = teamClient.db('basketballTournament').collection('teams');
       // Find the right team
       db.find(findKeyTeam).toArray((err, results)=>{
         if (err) console.log(err);
@@ -245,7 +253,7 @@ router.route("/:id").delete((req, res, next) => {
               db.insertOne(results[0], (err, docs)=>{
                 if (err) console.log(err);
                 console.log('Object added again');
-                client.close();
+                teamClient.close();
               });
             });
             return;
@@ -255,7 +263,8 @@ router.route("/:id").delete((req, res, next) => {
     });
 
     // Then delete participant
-    MongoClient.connect("mongodb://127.0.0.1:27017", (err, client) => {
+    let client = new MongoClient(AtlasUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+    client.connect((err) => {
       if (err) console.log(err);
 
       let db = client.db("basketballTournament").collection("participants");
