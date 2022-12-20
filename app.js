@@ -1,6 +1,7 @@
 // Packages
 const express = require("express"),
   bodyParser = require("body-parser"),
+  cors = require('cors');
   nodemailer = require("nodemailer"),
   mongo = require("mongodb"),
   MongoClient = mongo.MongoClient;
@@ -280,6 +281,6 @@ router.route("/:id").delete((req, res, next) => {
 });
 
 // Finally, launching the server at port 5454
-let app = express().use("/signup", router).listen(5454);
+let app = express().use(cors()).use("/signup", router).listen(5454);
 
 console.log("listening on port 5454");
