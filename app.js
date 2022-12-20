@@ -31,7 +31,7 @@ router.route("/verify").post((req, res, next) => {
   if (recipient.split("@")[1] !== "student.eursc.eu") {
     res.writeHead(200, { "Content-type": "text/html" });
     res.end(
-      'School email not recognised. Please try again. <button onclick="location.href=`http://127.0.0.1:3000/signup/verification.html`;">Try Again</button>'
+      'School email not recognised. Please try again. <button onclick="location.href=`http://89.116.228.40:3000/signup/verification.html`;">Try Again</button>'
     );
   } else {
     let client = new MongoClient(AtlasUrl, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -52,7 +52,7 @@ router.route("/verify").post((req, res, next) => {
               from: credentials.user,
               to: recipient,
               subject: "Email Already in Use",
-              html: `<p>Your email has already been used!</p><br><a href='http://127.0.0.1:3000/'>Back to site</a>`,
+              html: `<p>Your email has already been used!</p><br><a href='http://89.116.228.40:3000/'>Back to site</a>`,
             },
             (err) => {
               if (err) console.log(err);
@@ -69,7 +69,7 @@ router.route("/verify").post((req, res, next) => {
                 from: credentials.user,
                 to: recipient,
                 subject: "Email Verification",
-                html: `<p>Click below to sign-up!</p><br><a href='http://127.0.0.1:3000/signup/signup.html?email=${recipient}'>Verify</a>`,
+                html: `<p>Click below to sign-up!</p><br><a href='http://89.116.228.40:3000/signup/signup.html?email=${recipient}'>Verify</a>`,
               },
               (err) => {
                 if (err) console.log(err);
@@ -123,7 +123,7 @@ router
                 from: credentials.user,
                 to: recipient,
                 subject: "Email Already in Use",
-                html: `<p>Your email has already been used!</p><br><a href='http://127.0.0.1:3000/'>Back to site</a>`,
+                html: `<p>Your email has already been used!</p><br><a href='http://89.116.228.40:3000/'>Back to site</a>`,
               },
               (err) => {
                 if (err) console.log(err);
@@ -153,7 +153,7 @@ router
                   from: credentials.user,
                   to: recipient,
                   subject: "Thank you for signing-up!",
-                  html: `<a href='http://127.0.0.1:3000/'>Back to site</a>`,
+                  html: `<a href='http://89.116.228.40:3000/'>Back to site</a>`,
                 },
                 (err) => {
                   if (err) console.log(err);

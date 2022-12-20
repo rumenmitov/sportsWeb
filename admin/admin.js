@@ -54,7 +54,7 @@ function getResults() {
     // Handling data from server
     let xhttp = new XMLHttpRequest();
 
-    xhttp.open("GET", "http://127.0.0.1:5454/signup");
+    xhttp.open("GET", "http://89.116.228.40:5454/signup");
     xhttp.send(null);
     
     xhttp.onload = function() {
@@ -156,11 +156,11 @@ let deleteParticipant = function(id) {
 
     let xhttp = new XMLHttpRequest();
 
-    xhttp.open("DELETE", `http://127.0.0.1:5454/signup/${id}`);
+    xhttp.open("DELETE", `http://89.116.228.40:5454/signup/${id}`);
     xhttp.send(null);
     
     xhttp.onload = () => {
-        document.write(`${xhttp.responseText}<br><button onclick='location.href="http://127.0.0.1:3000/admin";'>Go back</button>`);
+        document.write(`${xhttp.responseText}<br><button onclick='location.href="http://89.116.228.40:3000/admin";'>Go back</button>`);
     };
 }
 
