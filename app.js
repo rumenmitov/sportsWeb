@@ -7,7 +7,7 @@ const express = require("express"),
   MongoClient = mongo.MongoClient;
 
 // URL for MongoDB Atlas
-const AtlasUrl = "mongodb+srv://pc:TVy66E2FsyndJfWl@sportswebsite.pracljv.mongodb.net/?retryWrites=true&w=majority"
+const AtlasUrl = "mongodb+srv://pc:R9wlrSS7hDEmhbSx@sportswebsite.pypjb10.mongodb.net/?retryWrites=true&w=majority"
 
 // Credentials for PC email and the email setup
 const credentials = {
