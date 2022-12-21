@@ -11,14 +11,12 @@ const AtlasUrl = "mongodb+srv://pc:TVy66E2FsyndJfWl@sportswebsite.pracljv.mongod
 
 // Credentials for PC email and the email setup
 const credentials = {
-  user: "sports@pupilscom-esl1.eu",
-  pass: "8Ggut3Gb?53hznXj",
+  user: "sports.pclux1@gmail.com",
+  pass: "kneklawtmqepycpp",
 };
 
 let nodeTransporter = nodemailer.createTransport({
-    host: "smtp.zoho.eu",
-    port: 465,
-    secure: true,
+    service: "gmail",
     auth: credentials
 });
 
