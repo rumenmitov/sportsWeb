@@ -5,7 +5,8 @@ let teamSelectBox = document.querySelector("#teamSelectBox");
 let teamSelect = document.querySelector("select");
 
 let xhttp = new XMLHttpRequest();
-xhttp.open("GET", "http://89.116.228.40:5454/signup/teams");
+xhttp.open("GET", "https://89.116.228.40:5454/signup/teams");
+
 xhttp.send(null);
 xhttp.onload = function () {
   let teams = JSON.parse(this.responseText);
@@ -34,7 +35,7 @@ signupForm.appendChild(emailInput);
 let submitButton = document.createElement("input");
 submitButton.setAttribute("type", "submit");
 submitButton.setAttribute("value", "Sign-up");
-submitButton.setAttribute('id', "submitButton");
+submitButton.setAttribute("id", "submitButton");
 signupForm.appendChild(submitButton);
 
 teamSelect.addEventListener("click", () => {
@@ -53,15 +54,15 @@ teamSelect.addEventListener("click", () => {
 
 addNewTeamInput();
 
-signupForm.addEventListener("submit", ()=>{
+signupForm.addEventListener("submit", () => {
   submitButton.remove();
 });
 
 function addNewTeamInput() {
-    let newTeamInput = document.createElement("input");
-    newTeamInput.setAttribute("id", "newTeamInput");
-    newTeamInput.setAttribute("name", "newTeam");
-    newTeamInput.setAttribute("placeholder", "Team name");
-    newTeamInput.setAttribute('required', 'true');
-    teamSelectBox.appendChild(newTeamInput);
+  let newTeamInput = document.createElement("input");
+  newTeamInput.setAttribute("id", "newTeamInput");
+  newTeamInput.setAttribute("name", "newTeam");
+  newTeamInput.setAttribute("placeholder", "Team name");
+  newTeamInput.setAttribute("required", "true");
+  teamSelectBox.appendChild(newTeamInput);
 }
