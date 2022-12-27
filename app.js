@@ -37,7 +37,6 @@ router.route("/verify").post((req, res, next) => {
   let recipient = req.body.email;
 
   if (recipient.split("@")[1] !== "student.eursc.eu") {
-    res.writeHead(200, { "Content-type": "text/html" });
     res.sendFile(__dirname + '/server/responsePages/invalidEmail.html');
   } else {
     let client = new MongoClient(AtlasUrl, {
