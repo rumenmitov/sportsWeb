@@ -174,7 +174,7 @@ function sortResults(results) {
 let deleteParticipant = function (userInfo) {
   userInfo = JSON.stringify(userInfo);
   let AdminConfirmation = prompt(
-    `Are you sure you want to delete the user with the email: '${userInfo["email"]}'?\nIf you are sure please type 'CONFIRM' below.`
+    `Are you sure you want to delete the user with the email: '${(JSON.parse(userInfo)).email}'?\nIf you are sure please type 'CONFIRM' below.`
   );
   if (AdminConfirmation !== "CONFIRM") return;
   console.log(userInfo);
