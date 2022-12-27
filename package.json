@@ -1,22 +1,23 @@
 {
-  "name": "coding",
+  "name": "sportsWebsite",
   "version": "1.0.0",
   "description": "Sports Website",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "startServer": "node server.js &",
+    "startApp": "node app.js &"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rumenmitov/Coding.git"
+    "url": "git+https://github.com/rumenmitov/sportsWebsite.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rumenmitov/Coding/issues"
+    "url": "https://github.com/rumenmitov/sportsWebsite/issues"
   },
-  "homepage": "https://github.com/rumenmitov/Coding#readme",
+  "homepage": "https://github.com/rumenmitov/sportsWebsite#readme",
   "dependencies": {
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
