@@ -3,10 +3,10 @@ const fs = require("fs"),
   https = require("https"),
   express = require("express"),
   bodyParser = require("body-parser"),
-  cors = require("cors");
-(nodemailer = require("nodemailer")),
-  (mongo = require("mongodb")),
-  (MongoClient = mongo.MongoClient);
+  cors = require("cors"),
+  nodemailer = require("nodemailer"),
+  mongo = require("mongodb"),
+  MongoClient = mongo.MongoClient;
 
 // SSL certificate is kept only at the server
 const sslOptions = {
@@ -174,9 +174,10 @@ router
                 },
                 (err) => {
                   if (err) console.log(err);
-                  res.send(
-                    "Good to go. Please check your inbox for more information"
-                  );
+                  // res.send(
+                  //   "Good to go. Please check your inbox for more information"
+                  // );
+                  res.send(fs.readFileSync('./server/responsePages/verificationEmailSent.html'));
                 }
               );
 
