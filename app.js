@@ -38,9 +38,7 @@ router.route("/verify").post((req, res, next) => {
 
   if (recipient.split("@")[1] !== "student.eursc.eu") {
     res.writeHead(200, { "Content-type": "text/html" });
-    res.end(
-      'School email not recognised. Please try again. <button onclick="location.href=`https://sportspc.ml/signup/verification.html`;">Try Again</button>'
-    );
+    res.sendFile(__dirname + '/server/responsePages/invalidEmail.html');
   } else {
     let client = new MongoClient(AtlasUrl, {
       useNewUrlParser: true,
