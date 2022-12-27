@@ -367,7 +367,7 @@ router.route("/:userInfo").delete((req, res, next) => {
         if (err) console.log(err);
 
         console.log("Participant deleted.");
-        res.end(`Participant with email: ${requestEmail} deleted successfully!`);
+        res.send(`<p>Participant with email: <b>${requestEmail}</b> deleted successfully!`);
         client.close();
       });
     });
