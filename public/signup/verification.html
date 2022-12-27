@@ -4,13 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="loader.css">
+    <script src="./verification.js" defer></script>
     <title>verification</title>
 </head>
 <body>
     <form action="https://89.116.228.40:5454/signup/verify" method="post">
         <label for="email">Please enter school email:</label>
-        <input type="email" name="email" placeholder="rumen.mitov@student.eursc.eu">
+        <input type="email" name="email" placeholder="e.g. rumen.mitov@student.eursc.eu" size="40">
         <input type="submit" value="Verify">
     </form>
+
+    <div id="screenCover"></div>
+    <div id="loader"></div>
+    <p id="coverText">Please wait...</p>
 </body>
 </html>

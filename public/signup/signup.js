@@ -3,13 +3,15 @@ const email = location.href.split("?email=")[1];
 let signupForm = document.querySelector("form");
 let teamSelectBox = document.querySelector("#teamSelectBox");
 let teamSelect = document.querySelector("select");
+let screenCover = document.querySelector('#screenCover');
+let loader = document.querySelector("#loader");
+let coverText = document.querySelector('#coverText');
 
 let xhttp = new XMLHttpRequest();
 xhttp.open("GET", "https://89.116.228.40:5454/signup/teams");
 xhttp.send(null);
 xhttp.onload = function () {
   let teams = JSON.parse(this.responseText);
-  console.log(teams[0].team);
 
   for (let index in teams) {
     let newTeamOption = document.createElement("option");
@@ -17,6 +19,10 @@ xhttp.onload = function () {
     newTeamOption.innerText = teams[index].team;
     teamSelect.appendChild(newTeamOption);
   }
+
+  screenCover.style.display = 'none';
+  loader.style.display = "none";
+  coverText.style.display = 'none';
 };
 
 let emailLabel = document.createElement("label");
@@ -55,6 +61,10 @@ addNewTeamInput();
 
 signupForm.addEventListener("submit", ()=>{
   submitButton.remove();
+
+  screenCover.style.display = 'inline-block';
+  loader.style.display = "inline-block";
+  coverText.style.display = 'inline-block';
 });
 
 function addNewTeamInput() {
