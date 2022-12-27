@@ -37,7 +37,7 @@ router.route("/verify").post((req, res, next) => {
   let recipient = req.body.email;
 
   if (recipient.split("@")[1] !== "student.eursc.eu") {
-    res.sendFile(__dirname + '/server/responsePages/invalidEmail.html');
+    res.sendFile(__dirname + "/server/responsePages/invalidEmail.html");
   } else {
     let client = new MongoClient(AtlasUrl, {
       useNewUrlParser: true,
@@ -64,7 +64,9 @@ router.route("/verify").post((req, res, next) => {
             },
             (err) => {
               if (err) console.log(err);
-              res.sendFile(__dirname + '/server/responsePages/emailAlreadyInUse.html');
+              res.sendFile(
+                __dirname + "/server/responsePages/emailAlreadyInUse.html"
+              );
             }
           );
         } else {
@@ -79,7 +81,9 @@ router.route("/verify").post((req, res, next) => {
               },
               (err) => {
                 if (err) console.log(err);
-                res.sendFile(__dirname + '/server/responsePages/verificationEmailSent.html');
+                res.sendFile(
+                  __dirname + "/server/responsePages/verificationEmailSent.html"
+                );
               }
             );
           }
@@ -139,7 +143,9 @@ router
               },
               (err) => {
                 if (err) console.log(err);
-                res.sendFile(__dirname + '/server/responsePages/emailAlreadyInUse.html');
+                res.sendFile(
+                  __dirname + "/server/responsePages/emailAlreadyInUse.html"
+                );
                 return next();
               }
             );
@@ -157,26 +163,6 @@ router
 
             db.insertOne(newParticipant, (err, docs) => {
               if (err) console.log(err);
-
-              // nodeTransporter.sendMail(
-              //   {
-              //     from: credentials.user,
-              //     to: recipient,
-              //     subject: "Thank you for signing-up!",
-              //     html: `<h1>Here's your info:</h1>
-              //     <p><b>First Name:</b>${newParticipant.firstName}</p>
-              //     <p><b>Last Name:</b>${newParticipant.lastName}</p>
-              //     <p><b>Date of Birth:</b>${newParticipant.dob}</p>
-              //     <p><b>Class:</b>${newParticipant.class}</p>
-              //     <p><b>Team:</b>${newParticipant.team}</p>
-              //     <a href='https://sportspc.ml/'>Back to site</a>`,
-              //   },
-              //   (err) => {
-              //     if (err) console.log(err);
-              //     res.sendFile(__dirname + '/server/responsePages/userSignedUp.html');
-              //   }
-              // );
-
               console.log("New person added.");
             });
 
@@ -193,9 +179,13 @@ router
                     (err) => {
                       if (err) console.log(err);
 
-                      let listOfTeammates = '';
-                      for ( let index in results[0].teamMembers ) {
-                        if (index === 0) listOfTeammates === results[0].teamMembers[index].firstName + ' ' + results[0].teamMembers[index].lastName;
+                      let listOfTeammates = "";
+                      for (let index in results[0].teamMembers) {
+                        if (index === 0)
+                          listOfTeammates ===
+                            results[0].teamMembers[index].firstName +
+                              " " +
+                              results[0].teamMembers[index].lastName;
                         listOfTeammates += `, ${results[0].teamMembers[index].firstName} ${results[0].teamMembers[index].lastName}`;
                       }
 
@@ -204,44 +194,52 @@ router
                           from: credentials.user,
                           to: recipient,
                           subject: "Thank you for signing-up!",
-                          html: `<h1>Here's your info:</h1>
-                          <p><b>First Name:</b>${newParticipant.firstName}</p>
-                          <p><b>Last Name:</b>${newParticipant.lastName}</p>
-                          <p><b>Date of Birth:</b>${newParticipant.dob}</p>
-                          <p><b>Class:</b>${newParticipant.class}</p>
-                          <p><b>Team:</b>${newParticipant.team}</p>
+                          html: `<h1>Here is your info:</h1>
+                          <p><b>First Name:</b> ${newParticipant.firstName}</p>
+                          <p><b>Last Name:</b> ${newParticipant.lastName}</p>
+                          <p><b>Date of Birth:</b> ${newParticipant.dob}</p>
+                          <p><b>Class:</b> ${newParticipant.class}</p>
+                          <p><b>Team:</b> ${newParticipant.team}</p>
                           <h2>Your teammates are:<h2>
                           <p>${listOfTeammates}</p>
                           <a href='https://sportspc.ml/'>Back to site</a>`,
                         },
                         (err) => {
                           if (err) console.log(err);
-                          // res.sendFile(__dirname + '/server/responsePages/userSignedUp.html');
                           console.log("Participant added to team.");
                         }
-                        );
+                      );
 
-                        let listOfTeamEmails = [];
-                        for ( let index in results[0].teamMembers ) {
-                          listOfTeamEmails.push(results[0].teamMembers[index].email);
-                        }
-                        nodeTransporter.sendMail({
+                      // sending an email to notify the other members of the team
+                      let listOfTeamEmails = [];
+                      for (let index in results[0].teamMembers) {
+                        listOfTeamEmails.push(
+                          results[0].teamMembers[index].email
+                        );
+                      }
+                      nodeTransporter.sendMail(
+                        {
                           from: credentials.user,
                           to: listOfTeamEmails,
                           subject: "New Member was Added to Your Team",
-                          html: `<h1>Here's their info:</h1>
-                          <p><b>First Name:</b>${newParticipant.firstName}</p>
-                          <p><b>Last Name:</b>${newParticipant.lastName}</p>
-                          <p><b>Date of Birth:</b>${newParticipant.dob}</p>
-                          <p><b>Class:</b>${newParticipant.class}</p>
-                          <p><b>Team:</b>${newParticipant.team}</p>
-                          <a href='https://sportspc.ml/'>Back to site</a>`
-                        }, (err)=>{
+                          html: `<h1>Here is their info:</h1>
+                          <p><b>First Name:</b> ${newParticipant.firstName}</p>
+                          <p><b>Last Name:</b> ${newParticipant.lastName}</p>
+                          <p><b>Date of Birth:</b> ${newParticipant.dob}</p>
+                          <p><b>Class:</b> ${newParticipant.class}</p>
+                          <p><b>Team:</b> ${newParticipant.team}</p>
+                          <a href='https://sportspc.ml/'>Back to site</a>`,
+                        },
+                        (err) => {
                           if (err) console.log(err);
-                          res.sendFile(__dirname + '/server/responsePages/userSignedUp.html');
+                          console.log("Team has been notified");
+                          res.sendFile(
+                            __dirname +
+                              "/server/responsePages/userSignedUp.html"
+                          );
                           client.close();
-                        });
-
+                        }
+                      );
                     }
                   );
                 } else {
@@ -259,25 +257,26 @@ router
                         from: credentials.user,
                         to: recipient,
                         subject: "Thank you for signing-up!",
-                        html: `<h1>Here's your info:</h1>
-                        <p><b>First Name:</b>${newParticipant.firstName}</p>
-                        <p><b>Last Name:</b>${newParticipant.lastName}</p>
-                        <p><b>Date of Birth:</b>${newParticipant.dob}</p>
-                        <p><b>Class:</b>${newParticipant.class}</p>
-                        <p><b>Team:</b>${newParticipant.team}</p>
-                        <h2>Your teammates are:<h2>
-                        <p>${listOfTeammates}</p>
+                        html: `<h1>Here is your info:</h1>
+                        <p><b>First Name:</b> ${newParticipant.firstName}</p>
+                        <p><b>Last Name:</b> ${newParticipant.lastName}</p>
+                        <p><b>Date of Birth:</b> ${newParticipant.dob}</p>
+                        <p><b>Class:</b> ${newParticipant.class}</p>
+                        <p><b>Team:</b> ${newParticipant.team}</p>
+                        <hr>
+                        <p>You do not have any teammates yet. You will be notified if other players join your team.</p>
                         <a href='https://sportspc.ml/'>Back to site</a>`,
                       },
                       (err) => {
                         if (err) console.log(err);
-                        res.sendFile(__dirname + '/server/responsePages/userSignedUp.html');
+                        res.sendFile(
+                          __dirname + "/server/responsePages/userSignedUp.html"
+                        );
                         console.log("New team created.");
                         console.log("Participant added to team.");
                         client.close();
                       }
-                      );
-
+                    );
                   });
                 }
               });
