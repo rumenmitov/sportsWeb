@@ -183,9 +183,9 @@ router
                       for (let index in results[0].teamMembers) {
                         if (index === 0) {
                           listOfTeammates === results[0].teamMembers[index].firstName + " " + results[0].teamMembers[index].lastName;
-                          continue;
+                        } else {
+                          listOfTeammates += `, ${results[0].teamMembers[index].firstName} ${results[0].teamMembers[index].lastName}`;
                         }
-                        listOfTeammates += `, ${results[0].teamMembers[index].firstName} ${results[0].teamMembers[index].lastName}`;
                       }
 
                       nodeTransporter.sendMail(
@@ -199,6 +199,7 @@ router
                           <p><b>Date of Birth:</b> ${newParticipant.dob}</p>
                           <p><b>Class:</b> ${newParticipant.class}</p>
                           <p><b>Team:</b> ${newParticipant.team}</p>
+                          <hr>
                           <h2>Your teammates are:</h2>
                           <p>${listOfTeammates}</p>
                           <a href='https://sportspc.ml/'>Back to site</a>`,
