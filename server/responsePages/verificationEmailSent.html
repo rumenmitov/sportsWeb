@@ -1,26 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="../../images/pc_logo_favicon.jpg" type="image/x-icon">
     <title>verification email sent</title>
     <style>
-        body {
-            background-color: lime;
-        }
-        p {
-            color: white;
-        }
+      div {
+        width: 50vw;
+        height: 50vh;
+        position: absolute;
+        top: 25vh;
+        left: 25vw;
+        /* border: 1px solid red; */
+        text-align: center;
+        display: block;
+      }
+
+      p {
+        color: rgb(73, 73, 146);
+        font-size: larger;
+        font-weight: bold;
+        margin-bottom: 15vh;
+      }
+
+      button {
+        width: 15vw;
+        height: 10vh;
+        margin-bottom: 3vh;
+        color: whitesmoke;
+        background-color: rgba(18, 127, 190, 0.5);
+        border-radius: 10%;
+        border: outset 3px rgb(97, 97, 168);
+        font-weight: bold;
+      }
     </style>
-    <script defer>
-        document.querySelector('button').onclick = () => {
-            location.href = 'https://sportspc.ml';
-        };
+  </head>
+  <body>
+    <div>
+      <img src="../../images/pc_logo.png" alt="pc_logo" />
+      <p>
+        Verification email sent. Please check your inbox for more information
+      </p>
+      <button id="outlookButton">Go to Outlook</button><br />
+      <button id="backToSite">Back to site</button>
+    </div>
+
+    <script>
+      document.querySelector("#outlookButton").onclick = () => {
+        location.href = "https://outlook.com";
+      };
+      document.querySelector("#backToSite").onclick = () => {
+        location.href = "https://sportspc.ml/signup/verification.html";
+      };
     </script>
-</head>
-<body>
-    <p>Verification email sent. Please check your inbox for more information</p>
-    <button>Go back</button>
-</body>
+  </body>
 </html>

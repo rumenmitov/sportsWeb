@@ -168,7 +168,13 @@ router
                   from: credentials.user,
                   to: recipient,
                   subject: "Thank you for signing-up!",
-                  html: `<a href='https://sportspc.ml/'>Back to site</a>`,
+                  html: `<h1>Here's your info:</h1>
+                  <p><b>First Name:</b>${newParticipant.firstName}</p>
+                  <p><b>Last Name:</b>${newParticipant.lastName}</p>
+                  <p><b>Date of Birth:</b>${newParticipant.dob}</p>
+                  <p><b>Class:</b>${newParticipant.class}</p>
+                  <p><b>Team:</b>${newParticipant.team}</p>
+                  <a href='https://sportspc.ml/'>Back to site</a>`,
                 },
                 (err) => {
                   if (err) console.log(err);
