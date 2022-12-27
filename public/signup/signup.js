@@ -1,4 +1,5 @@
-const email = location.href.split("?email=")[1];
+const userCode = location.href.split("?userCode=")[1];
+const email = atob(userCode);
 
 let signupForm = document.querySelector("form");
 let teamSelectBox = document.querySelector("#teamSelectBox");

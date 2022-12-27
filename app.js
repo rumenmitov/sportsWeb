@@ -72,12 +72,14 @@ router.route("/verify").post((req, res, next) => {
         } else {
           // If not, send verification email
           if (recipient) {
+            // Before sending the email we have to decrypt the user's email which they will use later to sign-up
+            let encodedEmail = Buffer.from(recipient, 'base64');
             nodeTransporter.sendMail(
               {
                 from: credentials.user,
                 to: recipient,
                 subject: "Email Verification",
-                html: `<p>Click below to sign-up!</p><br><a href='https://sportspc.ml/signup/signup.html?email=${recipient}'>Verify</a>`,
+                html: `<p>Click below to sign-up!</p><br><a href='https://sportspc.ml/signup/signup.html?userCode=${encodedEmail}'>Verify</a>`,
               },
               (err) => {
                 if (err) console.log(err);
