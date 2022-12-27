@@ -158,24 +158,24 @@ router
             db.insertOne(newParticipant, (err, docs) => {
               if (err) console.log(err);
 
-              nodeTransporter.sendMail(
-                {
-                  from: credentials.user,
-                  to: recipient,
-                  subject: "Thank you for signing-up!",
-                  html: `<h1>Here's your info:</h1>
-                  <p><b>First Name:</b>${newParticipant.firstName}</p>
-                  <p><b>Last Name:</b>${newParticipant.lastName}</p>
-                  <p><b>Date of Birth:</b>${newParticipant.dob}</p>
-                  <p><b>Class:</b>${newParticipant.class}</p>
-                  <p><b>Team:</b>${newParticipant.team}</p>
-                  <a href='https://sportspc.ml/'>Back to site</a>`,
-                },
-                (err) => {
-                  if (err) console.log(err);
-                  res.sendFile(__dirname + '/server/responsePages/userSignedUp.html');
-                }
-              );
+              // nodeTransporter.sendMail(
+              //   {
+              //     from: credentials.user,
+              //     to: recipient,
+              //     subject: "Thank you for signing-up!",
+              //     html: `<h1>Here's your info:</h1>
+              //     <p><b>First Name:</b>${newParticipant.firstName}</p>
+              //     <p><b>Last Name:</b>${newParticipant.lastName}</p>
+              //     <p><b>Date of Birth:</b>${newParticipant.dob}</p>
+              //     <p><b>Class:</b>${newParticipant.class}</p>
+              //     <p><b>Team:</b>${newParticipant.team}</p>
+              //     <a href='https://sportspc.ml/'>Back to site</a>`,
+              //   },
+              //   (err) => {
+              //     if (err) console.log(err);
+              //     res.sendFile(__dirname + '/server/responsePages/userSignedUp.html');
+              //   }
+              // );
 
               console.log("New person added.");
             });
@@ -193,8 +193,55 @@ router
                     (err) => {
                       if (err) console.log(err);
 
-                      console.log("Participant added to team.");
-                      client.close();
+                      let listOfTeammates = '';
+                      for ( let index in results[0].teamMembers ) {
+                        if (index === 0) listOfTeammates === results[0].teamMembers[index].firstName + ' ' + results[0].teamMembers[index].lastName;
+                        listOfTeammates += `, ${results[0].teamMembers[index].firstName} ${results[0].teamMembers[index].lastName}`;
+                      }
+
+                      nodeTransporter.sendMail(
+                        {
+                          from: credentials.user,
+                          to: recipient,
+                          subject: "Thank you for signing-up!",
+                          html: `<h1>Here's your info:</h1>
+                          <p><b>First Name:</b>${newParticipant.firstName}</p>
+                          <p><b>Last Name:</b>${newParticipant.lastName}</p>
+                          <p><b>Date of Birth:</b>${newParticipant.dob}</p>
+                          <p><b>Class:</b>${newParticipant.class}</p>
+                          <p><b>Team:</b>${newParticipant.team}</p>
+                          <h2>Your teammates are:<h2>
+                          <p>${listOfTeammates}</p>
+                          <a href='https://sportspc.ml/'>Back to site</a>`,
+                        },
+                        (err) => {
+                          if (err) console.log(err);
+                          // res.sendFile(__dirname + '/server/responsePages/userSignedUp.html');
+                          console.log("Participant added to team.");
+                        }
+                        );
+
+                        let listOfTeamEmails = [];
+                        for ( let index in results[0].teamMembers ) {
+                          listOfTeamEmails.push(results[0].teamMembers[index].email);
+                        }
+                        nodeTransporter.sendMail({
+                          from: credentials.user,
+                          to: listOfTeamEmails,
+                          subject: "New Member was Added to Your Team",
+                          html: `<h1>Here's their info:</h1>
+                          <p><b>First Name:</b>${newParticipant.firstName}</p>
+                          <p><b>Last Name:</b>${newParticipant.lastName}</p>
+                          <p><b>Date of Birth:</b>${newParticipant.dob}</p>
+                          <p><b>Class:</b>${newParticipant.class}</p>
+                          <p><b>Team:</b>${newParticipant.team}</p>
+                          <a href='https://sportspc.ml/'>Back to site</a>`
+                        }, (err)=>{
+                          if (err) console.log(err);
+                          res.sendFile(__dirname + '/server/responsePages/userSignedUp.html');
+                          client.close();
+                        });
+
                     }
                   );
                 } else {
@@ -207,9 +254,30 @@ router
                   dbTeams.insertOne(newTeamObj, (err, docs) => {
                     if (err) console.log(err);
 
-                    console.log("New team created.");
-                    console.log("Participant added to team.");
-                    client.close();
+                    nodeTransporter.sendMail(
+                      {
+                        from: credentials.user,
+                        to: recipient,
+                        subject: "Thank you for signing-up!",
+                        html: `<h1>Here's your info:</h1>
+                        <p><b>First Name:</b>${newParticipant.firstName}</p>
+                        <p><b>Last Name:</b>${newParticipant.lastName}</p>
+                        <p><b>Date of Birth:</b>${newParticipant.dob}</p>
+                        <p><b>Class:</b>${newParticipant.class}</p>
+                        <p><b>Team:</b>${newParticipant.team}</p>
+                        <h2>Your teammates are:<h2>
+                        <p>${listOfTeammates}</p>
+                        <a href='https://sportspc.ml/'>Back to site</a>`,
+                      },
+                      (err) => {
+                        if (err) console.log(err);
+                        res.sendFile(__dirname + '/server/responsePages/userSignedUp.html');
+                        console.log("New team created.");
+                        console.log("Participant added to team.");
+                        client.close();
+                      }
+                      );
+
                   });
                 }
               });
