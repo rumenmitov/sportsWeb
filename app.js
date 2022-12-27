@@ -181,11 +181,10 @@ router
 
                       let listOfTeammates = "";
                       for (let index in results[0].teamMembers) {
-                        if (index === 0)
-                          listOfTeammates ===
-                            results[0].teamMembers[index].firstName +
-                              " " +
-                              results[0].teamMembers[index].lastName;
+                        if (index === 0) {
+                          listOfTeammates === results[0].teamMembers[index].firstName + " " + results[0].teamMembers[index].lastName;
+                          continue;
+                        }
                         listOfTeammates += `, ${results[0].teamMembers[index].firstName} ${results[0].teamMembers[index].lastName}`;
                       }
 
@@ -200,7 +199,7 @@ router
                           <p><b>Date of Birth:</b> ${newParticipant.dob}</p>
                           <p><b>Class:</b> ${newParticipant.class}</p>
                           <p><b>Team:</b> ${newParticipant.team}</p>
-                          <h2>Your teammates are:<h2>
+                          <h2>Your teammates are:</h2>
                           <p>${listOfTeammates}</p>
                           <a href='https://sportspc.ml/'>Back to site</a>`,
                         },
