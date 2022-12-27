@@ -5,8 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="../../public/images/pc_logo.png" type="image/x-icon">
-    <title>email already in use</title>
+    <title>invalid email</title>
     <style>
+        body {
+            overflow-x: hidden;
+        }
       div {
         width: 50vw;
         height: 50vh;
@@ -22,10 +25,14 @@
         color: rgb(73, 73, 146);
         font-size: larger;
         font-weight: bold;
-        margin-bottom: 15vh;
-      }
+    }
 
-      button {
+    i {
+        color: rgb(73, 73, 146, 0.5);
+    }
+    
+    button {
+        margin-top: 15vh;
         width: 15vw;
         height: 10vh;
         margin-bottom: 3vh;
@@ -40,7 +47,9 @@
   <body>
     <div>
       <img src="../../public/images/pc_logo.png" alt="pc_logo" />
-      <p>This email is already registered.</p>
+      <p>Invalid email!</p>
+      <p>Please use your school email.</p>
+      <p><i>E.g. rumen.mitov@student.eursc.eu</i></p>
       <button id="backToSite">Back to site</button>
     </div>
 
