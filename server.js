@@ -51,7 +51,7 @@ https.createServer(sslOptions, app).listen(443);
 // Redirecting HTTP trffic
 http
   .createServer((req, res) => {
-    res.writeHead(301, { Location: "https://sportspc.ml" });
+    res.writeHead(301, { "Location": "https://sportspc.ml" });
     res.end();
   })
   .listen(80);
