@@ -172,12 +172,12 @@ function sortResults(results) {
 }
 
 let deleteParticipant = function (userInfo) {
-  id = JSON.stringify(id);
+  userInfo = JSON.stringify(userInfo);
   let AdminConfirmation = prompt(
     `Are you sure you want to delete the user with the email: '${userInfo.email}'?\nIf you are sure please type 'CONFIRM' below.`
   );
   if (AdminConfirmation !== "CONFIRM") return;
-  console.log(id);
+  console.log(userInfo);
 
   screenCover.style.display = "inline-block";
   loader.style.display = "inline-block";

@@ -306,11 +306,11 @@ router.route("/teams").get((req, res) => {
 });
 
 // This part of the router is responsible for DELETE (because I need to find parameters to pass data to server)
-router.route("/:id").delete((req, res, next) => {
+router.route("/:userInfo").delete((req, res, next) => {
   // This is to delete entries in the table
-  let requestID = JSON.parse(req.params["id"])["id"];
-  let requestTeam = JSON.parse(req.params["id"])["team"];
-  let requestEmail = JSON.parse(req.params["id"])["email"];
+  let requestID = JSON.parse(req.params["userInfo"])["id"];
+  let requestTeam = JSON.parse(req.params["userInfo"])["team"];
+  let requestEmail = JSON.parse(req.params["userInfo"])["email"];
 
   if (requestID) {
     // Deleting users by ID (to prevent deletion of the wrong participant by accident)
@@ -367,7 +367,7 @@ router.route("/:id").delete((req, res, next) => {
         if (err) console.log(err);
 
         console.log("Participant deleted.");
-        res.end(`Participant with ID: ${requestID} deleted successfully!`);
+        res.end(`Participant with email: ${requestEmail} deleted successfully!`);
         client.close();
       });
     });
