@@ -84,7 +84,8 @@ router.route("/verify").post((req, res, next) => {
               },
               (err) => {
                 if (err) console.log(err);
-                res.send("Verification email sent. Please check your inbox");
+                // res.send("Verification email sent. Please check your inbox");
+                res.send(fs.readFileSync('./server/responsePages/verificationEmailSent.html'));
               }
             );
           }
@@ -144,9 +145,10 @@ router
               },
               (err) => {
                 if (err) console.log(err);
-                res.send(
-                  "This email is already in use. Please check your inbox for more information"
-                );
+                // res.send(
+                //   "This email is already in use. Please check your inbox for more information"
+                // );
+                res.send(fs.readFileSync('./server/responsePages/emailAlreadyInUse.html'));
                 return next();
               }
             );
@@ -177,7 +179,7 @@ router
                   // res.send(
                   //   "Good to go. Please check your inbox for more information"
                   // );
-                  res.send(fs.readFileSync('./server/responsePages/verificationEmailSent.html'));
+                  res.send(fs.readFileSync('./server/responsePages/userSignedUp.html'));
                 }
               );
 
