@@ -181,8 +181,8 @@ router
 
                       let listOfTeammates = "";
                       for (let index in results[0].teamMembers) {
-                        if (index === 0) {
-                          listOfTeammates = results[0].teamMembers[index].firstName + " " + results[0].teamMembers[index].lastName;
+                        if (index == 0) {
+                          listOfTeammates = `${results[0].teamMembers[index].firstName} ${results[0].teamMembers[index].lastName}`;
                         } else {
                           listOfTeammates += `, ${results[0].teamMembers[index].firstName} ${results[0].teamMembers[index].lastName}`;
                         }
