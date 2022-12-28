@@ -73,7 +73,8 @@ router.route("/verify").post((req, res, next) => {
           // If not, send verification email
           if (recipient) {
             // Before sending the email we have to decrypt the user's email which they will use later to sign-up
-            let encodedEmail = Buffer.from(recipient, 'base64');
+            let encodedEmail = Buffer.from(recipient);
+            encodedEmail = encodedEmail.toString('base64');
             nodeTransporter.sendMail(
               {
                 from: credentials.user,
