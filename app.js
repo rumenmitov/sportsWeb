@@ -67,6 +67,7 @@ router.route("/verify").post((req, res, next) => {
               res.sendFile(
                 __dirname + "/server/responsePages/emailAlreadyInUse.html"
               );
+              client.close();
             }
           );
         } else {
@@ -87,6 +88,7 @@ router.route("/verify").post((req, res, next) => {
                 res.sendFile(
                   __dirname + "/server/responsePages/verificationEmailSent.html"
                 );
+                client.close();
               }
             );
           }
@@ -113,6 +115,7 @@ router
       db.find().toArray((err, results) => {
         if (err) console.log(err);
         res.send(results);
+        client.close();
       });
     });
   })
@@ -149,6 +152,7 @@ router
                 res.sendFile(
                   __dirname + "/server/responsePages/emailAlreadyInUse.html"
                 );
+                client.close();
                 return next();
               }
             );
@@ -304,6 +308,7 @@ router.route("/teams").get((req, res) => {
       if (err) console.log(err);
 
       res.send(results);
+      client.close();
     });
   });
 });
