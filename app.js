@@ -472,9 +472,17 @@ router.route('/bugs').post((req, res)=>{
     from: credentials.user,
     to: credentials.user,
     subject: "User Report",
-    html: `<p>Student <b>${req.body.sender}</b> has submitted a <b>${req.body.type}</b> report.</p><hr><p>Their email is <b>${req.body.email}</b>.<hr><p>The report:<br><b>${req.body.comment}</b>`
+    html: `<p>Student <b>${req.body.sender}</b> has submitted a <b>${req.body.type}</b> report.</p>
+    <hr>
+    <p>Their email is <b>${req.body.email}</b>.
+    <hr>
+    <p>The report:</p>
+    <br>
+    <pre><b>${req.body.comment}</b></pre>`
   }, (err)=>{
     if (err) console.log(err);
+
+    res.sendFile(__dirname + '/server/responsePages/reportSent.html')
   });
 });
 

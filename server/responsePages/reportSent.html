@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>success</title>
+        <style>
+            div {
+                width: 50vw;
+                height: 50vh;
+                position: absolute;
+                top: 25vh;
+                left: 25vw;
+                text-align: center;
+                display: block;
+            }
+    
+            p {
+                color: rgb(73, 73, 146);
+                font-size: larger;
+                font-weight: bold;
+                margin-bottom: 15vh;
+            }
+    
+            button {
+                width: 15vw;
+                height: 10vh;
+                margin-bottom: 3vh;
+                color: whitesmoke;
+                background-color: rgba(18, 127, 190, 0.5);
+                border-radius: 10%;
+                border: outset 3px rgb(97, 97, 168);
+                font-weight: bold;
+            }
+        </style>
+    
+    </head>
+    <body>
+        <div>
+            <p>Thank you for contacting us!</p>
+            <button id="backToSite">Back to site</button>
+        </div>
+    
+        <script>
+            document.querySelector('#backToSite').onclick = () => {
+                location.href = 'https://sportspc.ml/';
+            };
+        </script>
+    </body>
+</html>
