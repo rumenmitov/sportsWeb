@@ -18,7 +18,9 @@ xhttp.onload = function() {
         newOption.setAttribute("value", teams[i].team);
         newOption.innerText = teams[i].team;
         team1.appendChild(newOption);
+        console.log(team1);
         team2.appendChild(newOption);
+        console.log(team2);
     }
 
     screenCover.style.display = "none";
