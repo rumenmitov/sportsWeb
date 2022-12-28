@@ -48,11 +48,16 @@
       <p>Please use your school email.</p>
       <p><i>E.g. rumen.mitov@student.eursc.eu</i></p>
       <button id="backToSite">Back to site</button>
+      <button id="report">Report this</button>
     </div>
 
     <script>
       document.querySelector("#backToSite").onclick = () => {
         location.href = "https://sportspc.ml/signup/verification.html";
+      };
+
+      document.querySelector("#report").onclick = () => {
+        location.href = "https://sportspc.ml/contact/contact.html?reportType=signup";
       };
     </script>
   </body>

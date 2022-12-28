@@ -40,11 +40,16 @@
         <div>
             <p>Error! Result cannot be a draw!</p>
             <button id="backToSite">Back to site</button>
+            <button id="report">Report this</button>
         </div>
     
         <script>
             document.querySelector('#backToSite').onclick = () => {
                 location.href = 'https://sportspc.ml/admin/teams.html';
+            };
+
+            document.querySelector("#report").onclick = () => {
+                location.href = "https://sportspc.ml/contact/contact.html?reportType=results";
             };
         </script>
     </body>
