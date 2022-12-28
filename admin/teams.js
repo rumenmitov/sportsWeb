@@ -2,8 +2,12 @@ let form = document.querySelector('form');
 let team1 = document.querySelector('team1');
 let team2 = document.querySelector('team2');
 
+let screenCover = document.querySelector('#screenCover');
+let loader = document.querySelector("#loader");
+let coverText = document.querySelector('#coverText');
+
 let xhttp = new XMLHttpRequest();
-xhttp.open("GET", "https://89.116.228.40/teams/");
+xhttp.open("GET", "https://89.116.228.40/signup/teams/");
 xhttp.send(null);
 
 xhttp.onload = function() {
