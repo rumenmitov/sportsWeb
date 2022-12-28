@@ -331,65 +331,68 @@ router
       ` (${req.body.team1})`;
     let team1won, team2won;
     if (req.body.team1score === req.body.team2score) {
-      res.end('Error! Result cannot be a draw!<button onclick="location.href=`https://sportspc.ml/admin/teams.html`;">Go back</button>');
-    } else if (req.body.team1score > req.body.team2score) {
-      team1won = true;
-      team2won = false;
+      res.sendFile(__dirname + '/server/responsePages/scoreError.html');
     } else {
-      team1won = false;
-      team2won = true;
+      if (req.body.team1score > req.body.team2score) {
+        team1won = true;
+        team2won = false;
+      } else {
+        team1won = false;
+        team2won = true;
+      }
+
+      // Next update the database
+      let client = new MongoClient(AtlasUrl, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+      client.connect((err) => {
+        if (err) console.log(err);
+  
+        let dbTeams = client.db("basketballTournament").collection("teams");
+  
+        if (team1won) {
+          dbTeams.updateOne(
+            { team: req.body.team1 },
+            { $push: { scores: team1result }, $inc: { wins: 1 } },
+            (err) => {
+              if (err) console.log(err);
+            }
+          );
+  
+          dbTeams.updateOne(
+            { team: req.body.team2 },
+            { $push: { scores: team2result }, $inc: { losses: 1 } },
+            (err) => {
+              if (err) console.log(err);
+  
+              res.sendFile(__dirname + '/server/responsePages/scoreSuccess.html');
+              client.close();
+            }
+          );
+        } else {
+          dbTeams.updateOne(
+            { team: req.body.team1 },
+            { $push: { scores: team1result }, $inc: { losses: 1 } },
+            (err) => {
+              if (err) console.log(err);
+            }
+          );
+  
+          dbTeams.updateOne(
+            { team: req.body.team2 },
+            { $push: { scores: team2result }, $inc: { wins: 1 } },
+            (err) => {
+              if (err) console.log(err);
+  
+              res.sendFile(__dirname + '/server/responsePages/scoreSuccess.html');
+              client.close();
+            }
+          );
+        }
+      });
     }
 
-    // Next update the database
-    let client = new MongoClient(AtlasUrl, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    client.connect((err) => {
-      if (err) console.log(err);
-
-      let dbTeams = client.db("basketballTournament").collection("teams");
-
-      if (team1won) {
-        dbTeams.updateOne(
-          { team: req.body.team1 },
-          { $push: { scores: team1result }, $inc: { wins: 1 } },
-          (err) => {
-            if (err) console.log(err);
-          }
-        );
-
-        dbTeams.updateOne(
-          { team: req.body.team2 },
-          { $push: { scores: team2result }, $inc: { losses: 1 } },
-          (err) => {
-            if (err) console.log(err);
-
-            res.sendFile(__dirname + '/server/responsePages/scoreSuccess.html');
-            client.close();
-          }
-        );
-      } else {
-        dbTeams.updateOne(
-          { team: req.body.team1 },
-          { $push: { scores: team1result }, $inc: { losses: 1 } },
-          (err) => {
-            if (err) console.log(err);
-          }
-        );
-
-        dbTeams.updateOne(
-          { team: req.body.team2 },
-          { $push: { scores: team2result }, $inc: { wins: 1 } },
-          (err) => {
-            if (err) console.log(err);
-
-            res.sendFile(__dirname + '/server/responsePages/scoreSuccess.html');
-            client.close();
-          }
-        );
-      }
-    });
   });
 
 // This part of the router is responsible for DELETE (because I need to find parameters to pass data to server)
