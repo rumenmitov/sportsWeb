@@ -1,6 +1,6 @@
 let form = document.querySelector('form');
-let team1 = document.querySelector('team1');
-let team2 = document.querySelector('team2');
+let team1 = document.querySelector('#team1');
+let team2 = document.querySelector('#team2');
 
 let screenCover = document.querySelector('#screenCover');
 let loader = document.querySelector("#loader");
@@ -20,8 +20,14 @@ xhttp.onload = function() {
         team1.appendChild(newOption);
         team2.appendChild(newOption);
     }
+
+    screenCover.style.display = "none";
+    loader.style.display = "none";
+    coverText.style.display = "none";
 }
 
 form.addEventListener('submit', ()=>{
-    // loader code goes here
+    screenCover.style.display = "inline-block";
+    loader.style.display = "inline-block";
+    coverText.style.display = "inline-block";
 })
