@@ -75,7 +75,7 @@ router.route("/verify").post((req, res, next) => {
           if (recipient) {
             // Before sending the email we have to decrypt the user's email which they will use later to sign-up
             let encodedEmail = Buffer.from(recipient);
-            encodedEmail = encodedEmail.toString('base64');
+            encodedEmail = encodedEmail.toString("base64");
             nodeTransporter.sendMail(
               {
                 from: credentials.user,
@@ -294,24 +294,87 @@ router
   });
 
 // This part of the router is responsible for handling the teams
-router.route("/teams").get((req, res) => {
-  let client = new MongoClient(AtlasUrl, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-  client.connect((err) => {
-    if (err) console.log(err);
-
-    let db = client.db("basketballTournament").collection("teams");
-
-    db.find().toArray((err, results) => {
+router
+  .route("/teams")
+  .get((req, res) => {
+    let client = new MongoClient(AtlasUrl, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    client.connect((err) => {
       if (err) console.log(err);
 
-      res.send(results);
-      client.close();
+      let dbTeams = client.db("basketballTournament").collection("teams");
+
+      dbTeams.find().toArray((err, results) => {
+        if (err) console.log(err);
+
+        res.send(results);
+        client.close();
+      });
+    });
+  })
+  .post((req, res) => {
+    // First process the information
+    let team1result =
+      req.body.team1score +
+      ` (${req.body.team1}) : ` +
+      req.body.team2score +
+      ` (${req.body.team2})`;
+    let team2result =
+      req.body.team2score +
+      ` (${req.body.team2}) : ` +
+      req.body.team1score +
+      ` (${req.body.team1})`;
+    let team1won, team2won;
+    if (req.body.team1score === req.body.team2score) {
+      res.send(
+        '<p>Error! Scores cannot be equal. Please try again!<a href="https://sportspc.ml/admin>Go back</a>'
+      );
+    } else if (req.body.team1score > req.body.team2score) {
+      team1won = true;
+      team2won = false;
+    } else {
+      team1won = false;
+      team2won = true;
+    }
+
+    // Next update the database
+    let client = new MongoClient(AtlasUrl, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    client.connect((err) => {
+      if (err) console.log(err);
+
+      let dbTeams = client.db("basketballTournament").collection("teams");
+
+      dbTeams.find({ team: req.body.team1 }).toArray((err, resultsArray) => {
+        if (err) console.log(err);
+
+        resultsArray[0].scores.push(team1result);
+        if (team1won) resultsArray[0].wins++;
+        else resultsArray[0].loses++;
+
+        dbTeams.save(resultsArray[0], (err)=>{ if (err) console.log(err); });
+      });
+
+      dbTeams.find({ team: req.body.team2 }).toArray((err, resultsArray) => {
+        if (err) console.log(err);
+
+        resultsArray[0].scores.push(team2result);
+        if (team2won) resultsArray[0].wins++;
+        else resultsArray[0].loses++;
+
+        dbTeams.save(resultsArray[0], (err)=>{ 
+          if (err) console.log(err); 
+        
+          res.send('<p>Scores updated successfully!<a href="https://sportspc.ml/admin>Go back</a>');
+          dbTeams.close();
+        });
+      });
     });
   });
-});
 
 // This part of the router is responsible for DELETE (because I need to find parameters to pass data to server)
 router.route("/:userInfo").delete((req, res, next) => {
@@ -375,7 +438,9 @@ router.route("/:userInfo").delete((req, res, next) => {
         if (err) console.log(err);
 
         console.log("Participant deleted.");
-        res.send(`<p>Participant with email: <b>${requestEmail}</b> deleted successfully!`);
+        res.send(
+          `<p>Participant with email: <b>${requestEmail}</b> deleted successfully!`
+        );
         client.close();
       });
     });

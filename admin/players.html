@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="loader.css">
+    <script src="./players.js" defer></script>
+    <title>Admin Portal</title>
+</head>
+<body>
+    <label for="sortBy">Sort by:</label>
+    <select name="sortBy" id="sortBySelection">
+        <option value="dateAdded" selected>Date added</option>
+        <option value="firstName">First Name</option>
+        <option value="lastName">Last Name</option>
+        <option value="dob">DoB</option>
+        <option value="class">Class</option>
+        <option value="teamName">Team Name</option>
+    </select>
+    <button id="getResults">Get results</button>
+
+    <div id="screenCover"></div>
+    <div id="loader"></div>
+    <p id="coverText">Please wait...</p>
+</body>
+</html>
