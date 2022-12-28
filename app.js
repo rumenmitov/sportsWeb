@@ -254,6 +254,9 @@ router
                   let newTeamObj = {
                     team: newParticipant.team,
                     teamMembers: [newParticipant],
+                    scores: [],
+                    wins: 0,
+                    losses: 0,
                   };
 
                   dbTeams.insertOne(newTeamObj, (err, docs) => {
@@ -329,7 +332,7 @@ router
     let team1won, team2won;
     if (req.body.team1score === req.body.team2score) {
       res.send(
-        '<p>Error! Scores cannot be equal. Please try again!<a href="https://sportspc.ml/admin>Go back</a>'
+        '<p>Error! Scores cannot be equal. Please try again!</p><a href="https://sportspc.ml/admin>Go back</a>'
       );
     } else if (req.body.team1score > req.body.team2score) {
       team1won = true;
@@ -349,32 +352,45 @@ router
 
       let dbTeams = client.db("basketballTournament").collection("teams");
 
-      dbTeams.find({ team: req.body.team1 }).toArray((err, resultsArray) => {
-        if (err) console.log(err);
+      if (team1won) {
+        dbTeams.updateOne(
+          { team: req.body.team1 },
+          { $push: { scores: team1result }, $inc: { wins: 1 } },
+          (err) => {
+            if (err) console.log(err);
+          }
+        );
 
-        if (resultsArray[0].scores === undefined) resultsArray[0].scores = [];
-        resultsArray[0].scores.push(team1result);
-        if (team1won) resultsArray[0].wins++;
-        else resultsArray[0].loses++;
+        dbTeams.updateOne(
+          { team: req.body.team2 },
+          { $push: { scores: team2result }, $inc: { losses: 1 } },
+          (err) => {
+            if (err) console.log(err);
 
-        dbTeams.save(resultsArray[0], (err)=>{ if (err) console.log(err); });
-      });
+            res.send("scores added successfully");
+            client.close();
+          }
+        );
+      } else {
+        dbTeams.updateOne(
+          { team: req.body.team1 },
+          { $push: { scores: team1result }, $inc: { losses: 1 } },
+          (err) => {
+            if (err) console.log(err);
+          }
+        );
 
-      dbTeams.find({ team: req.body.team2 }).toArray((err, resultsArray) => {
-        if (err) console.log(err);
+        dbTeams.updateOne(
+          { team: req.body.team2 },
+          { $push: { scores: team2result }, $inc: { wins: 1 } },
+          (err) => {
+            if (err) console.log(err);
 
-        if (resultsArray[0].scores === undefined) resultsArray[0].scores = [];
-        resultsArray[0].scores.push(team2result);
-        if (team2won) resultsArray[0].wins++;
-        else resultsArray[0].loses++;
-
-        dbTeams.save(resultsArray[0], (err)=>{ 
-          if (err) console.log(err); 
-        
-          res.send('<p>Scores updated successfully!<a href="https://sportspc.ml/admin>Go back</a>');
-          dbTeams.close();
-        });
-      });
+            res.send("scores added successfully");
+            client.close();
+          }
+        );
+      }
     });
   });
 
