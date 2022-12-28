@@ -317,7 +317,7 @@ router
       });
     });
   })
-  .post((req, res, next) => {
+  .post((req, res) => {
     // First process the information
     let team1result =
       req.body.team1score +
@@ -331,8 +331,7 @@ router
       ` (${req.body.team1})`;
     let team1won, team2won;
     if (req.body.team1score === req.body.team2score) {
-      res.sendFile(__dirname + '/server/responsePages/scoreError.html');
-      next();
+      res.end('Error! Result cannot be a draw!<button onclick="location.href=`https://sportspc.ml/admin/teams.html`;">Go back</button>');
     } else if (req.body.team1score > req.body.team2score) {
       team1won = true;
       team2won = false;
