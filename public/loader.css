@@ -31,6 +31,15 @@
     font-weight: bold;
 }
 
+#factsDiv {
+  position: absolute;
+  width: 17vw;
+  top: 72vh;
+  left: 41vw;
+  z-index: 200;
+  text-align: center;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
