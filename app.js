@@ -331,7 +331,7 @@ router
       ` (${req.body.team1})`;
     let team1won, team2won;
     if (req.body.team1score === req.body.team2score) {
-      res.sendFile(__dirname + '/serverResponses/scoreError.html');
+      res.sendFile(__dirname + '/server/responsePages/scoreError.html');
     } else if (req.body.team1score > req.body.team2score) {
       team1won = true;
       team2won = false;
@@ -365,7 +365,7 @@ router
           (err) => {
             if (err) console.log(err);
 
-            res.sendFile(__dirname + '/serverResponses/scoreSuccess.html');
+            res.sendFile(__dirname + '/server/responsePages/scoreSuccess.html');
             client.close();
           }
         );
@@ -384,7 +384,7 @@ router
           (err) => {
             if (err) console.log(err);
 
-            res.sendFile(__dirname + '/serverResponses/scoreSuccess.html');
+            res.sendFile(__dirname + '/server/responsePages/scoreSuccess.html');
             client.close();
           }
         );
