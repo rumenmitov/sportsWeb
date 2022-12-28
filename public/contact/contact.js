@@ -14,7 +14,7 @@ if (bugType === 'signup') {
     reportTypeSelect[3].setAttribute("selected", 'true');
 } else if (bugType === 'question') {
     reportTypeSelect[4].setAttribute("selected", 'true');
-} else if (bugType === 'compliment') {
+} else if (bugType === 'praise') {
     reportTypeSelect[5].setAttribute("selected", 'true');
 }  else if (bugType === 'other') {
     reportTypeSelect[6].setAttribute("selected", 'true');
