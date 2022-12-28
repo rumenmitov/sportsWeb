@@ -317,7 +317,7 @@ router
       });
     });
   })
-  .post((req, res) => {
+  .post((req, res, next) => {
     // First process the information
     let team1result =
       req.body.team1score +
@@ -331,9 +331,8 @@ router
       ` (${req.body.team1})`;
     let team1won, team2won;
     if (req.body.team1score === req.body.team2score) {
-      res.send(
-        '<p>Error! Scores cannot be equal. Please try again!</p><a href="https://sportspc.ml/admin>Go back</a>'
-      );
+      res.sendFile(__dirname + '/server/responsePages/scoreError.html');
+      next();
     } else if (req.body.team1score > req.body.team2score) {
       team1won = true;
       team2won = false;
@@ -367,7 +366,7 @@ router
           (err) => {
             if (err) console.log(err);
 
-            res.send("scores added successfully");
+            res.sendFile(__dirname + '/server/responsePages/scoreSuccess.html');
             client.close();
           }
         );
@@ -386,7 +385,7 @@ router
           (err) => {
             if (err) console.log(err);
 
-            res.send("scores added successfully");
+            res.sendFile(__dirname + '/server/responsePages/scoreSuccess.html');
             client.close();
           }
         );
