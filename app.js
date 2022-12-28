@@ -100,7 +100,7 @@ router.route("/verify").post((req, res, next) => {
 
 // This part of the router is responsible for the GET and POST (for seeing all data and adding new participants)
 router
-  .route("/")
+  .route("/participants")
   .get((req, res, next) => {
     // This is for searching the databse
     let client = new MongoClient(AtlasUrl, {
@@ -396,7 +396,7 @@ router
   });
 
 // This part of the router is responsible for DELETE (because I need to find parameters to pass data to server)
-router.route("/:userInfo").delete((req, res, next) => {
+router.route("/delete/:userInfo").delete((req, res, next) => {
   // This is to delete entries in the table
   let requestID = JSON.parse(req.params["userInfo"])["id"];
   let requestTeam = JSON.parse(req.params["userInfo"])["team"];
@@ -466,8 +466,8 @@ router.route("/:userInfo").delete((req, res, next) => {
   }
 });
 
-// Finally, launching the server at port 5454
-let app = express().use(cors()).use("/signup", router);
+// Finally, launching the server on port 5454
+let app = express().use(cors()).use("/server", router);
 https.createServer(sslOptions, app).listen(5454);
 
 console.log("listening on port 5454");

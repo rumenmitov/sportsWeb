@@ -67,7 +67,7 @@ function getResults() {
   // Handling data from server
   let xhttp = new XMLHttpRequest();
 
-  xhttp.open("GET", "https://89.116.228.40:5454/signup");
+  xhttp.open("GET", "https://89.116.228.40:5454/server/participants/");
   xhttp.send(null);
 
   xhttp.onload = function () {
@@ -185,7 +185,7 @@ let deleteParticipant = function (userInfo) {
 
   let xhttp = new XMLHttpRequest();
 
-  xhttp.open("DELETE", `https://89.116.228.40:5454/signup/${userInfo}`);
+  xhttp.open("DELETE", `https://89.116.228.40:5454/server/delete/${userInfo}`);
   xhttp.send(null);
 
   xhttp.onload = () => {
