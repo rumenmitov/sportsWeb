@@ -317,7 +317,7 @@ router
       });
     });
   })
-  .post((req, res) => {
+  .post((req, res, next) => {
     // First process the information
     let team1result =
       req.body.team1score +
