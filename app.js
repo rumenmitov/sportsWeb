@@ -352,6 +352,7 @@ router
       dbTeams.find({ team: req.body.team1 }).toArray((err, resultsArray) => {
         if (err) console.log(err);
 
+        if (resultsArray[0].scores === undefined) resultsArray[0].scores = [];
         resultsArray[0].scores.push(team1result);
         if (team1won) resultsArray[0].wins++;
         else resultsArray[0].loses++;
@@ -362,6 +363,7 @@ router
       dbTeams.find({ team: req.body.team2 }).toArray((err, resultsArray) => {
         if (err) console.log(err);
 
+        if (resultsArray[0].scores === undefined) resultsArray[0].scores = [];
         resultsArray[0].scores.push(team2result);
         if (team2won) resultsArray[0].wins++;
         else resultsArray[0].loses++;
