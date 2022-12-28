@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./loader.css">
+    <script src="./contact.js" defer></script>
     <title>contact us</title>
 </head>
 <body>
     <section id="reportBug">
         <h2>Report a Bug (or leave a compliment 😁)</h2>
-        <form action="https://89.116.228.40/server/bugs/" method="post">
+        <form action="https://89.116.228.40/server/bugs" method="post">
             <label for="sender">From:</label>
             <input type="text" name="sender">
             <label for="email">Your email:</label>
@@ -28,5 +30,9 @@
             <button type="submit">Send Report</button>
         </form>
     </section>
+
+    <div id="screenCover"></div>
+    <div id="loader"></div>
+    <p id="coverText">Please wait...</p>
 </body>
 </html>
