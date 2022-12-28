@@ -16,13 +16,23 @@ xhttp.onload = function() {
         let heading = document.createElement('h2');
         heading.innerText = teams[i].team;
         section.appendChild(heading);
-        
+
         for ( let j in teams[i].scores ) {
             // Displaying each result
             let para = document.createElement('p');
             para.innerHTML = `<i>Game ${Number(j)+1}</i> -- ${teams[i].scores[j]}`;
             section.appendChild(para);
         }
+
+        // Finally append wins and losses
+            let winsPara = document.createElement('p');
+            winsPara.innerHTML = `<b>Wins:</b> ${teams[i].wins}`;
+            section.appendChild(winsPara);
+
+            let lossesPara = document.createElement('p');
+            lossesPara.innerHTML = `<b>Losses:</b> ${teams[i].losses}`;
+            section.appendChild(lossesPara);
+
     }
 
     screenCover.style.display = "none";

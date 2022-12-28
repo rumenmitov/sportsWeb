@@ -466,6 +466,18 @@ router.route("/delete/:userInfo").delete((req, res, next) => {
   }
 });
 
+// This part of the router is for dealing with bug reports
+router.route('/bugs').post((req, res)=>{
+  nodeTransporter.sendMail({
+    from: credentials.user,
+    to: credentials.user,
+    subject: "User Report",
+    html: `<p>Student <b>${req.body.sender}</b> has submitted a <b>${req.body.type}</b> report.</p><hr><p>Their email is <b>${req.body.email}</b>.<hr><p>The report:<br><b>${req.body.comment}</b>`
+  }, (err)=>{
+    if (err) console.log(err);
+  });
+});
+
 // Finally, launching the server on port 5454
 let app = express().use(cors()).use("/server", router);
 https.createServer(sslOptions, app).listen(5454);

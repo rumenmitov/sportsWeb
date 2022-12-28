@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contact us</title>
+</head>
+<body>
+    <section id="reportBug">
+        <h2>Report a Bug (or leave a compliment 😁)</h2>
+        <form action="https://89.116.228.40/server/bugs/" method="post">
+            <label for="sender">From:</label>
+            <input type="text" name="sender">
+            <label for="email">Your email:</label>
+            <input type="email" name="email" size='40' placeholder="e.g. rumen.mitov@student.eursc.eu" required>
+            <label for="type">Please indicate the type of bug / request:</label>
+            <select name="type" id="type" required>
+                <option value="signup">Problems with signing up</option>
+                <option value="results">Score error</option>
+                <option value="teams">Problems with my team</option>
+                <option value="question">Question about the tournament</option>
+                <option value="compliment">Compliment 🤩</option>
+                <option value="other">Other</option>
+            </select>
+            <label for="comment">Please describe your bug / request:</label>
+            <textarea name="comment" cols="40" rows="10" required></textarea>
+        </form>
+    </section>
+</body>
+</html>
