@@ -332,6 +332,7 @@ router
     let team1won, team2won;
     if (req.body.team1score === req.body.team2score) {
       res.sendFile(__dirname + '/server/responsePages/scoreError.html');
+      next();
     } else if (req.body.team1score > req.body.team2score) {
       team1won = true;
       team2won = false;
