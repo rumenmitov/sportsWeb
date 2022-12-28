@@ -13,14 +13,22 @@ xhttp.send(null);
 xhttp.onload = function() {
     let teams = JSON.parse(this.responseText);
 
+    // Adding options to Team A
     for ( let i in teams ) {
         let newOption = document.createElement('option');
         newOption.setAttribute("value", teams[i].team);
         newOption.innerText = teams[i].team;
+
         team1.appendChild(newOption);
-        console.log(team1);
+    }
+
+    // Adding options to Team B
+    for ( let i in teams ) {
+        let newOption = document.createElement('option');
+        newOption.setAttribute("value", teams[i].team);
+        newOption.innerText = teams[i].team;
+
         team2.appendChild(newOption);
-        console.log(team2);
     }
 
     screenCover.style.display = "none";
