@@ -55,12 +55,13 @@ router.route("/verify").post((req, res, next) => {
         let recipient = req.body.email;
         if (results[0]) {
           // If this is true that means email is already registered, so send email to tell user that the email is already in use
+          let emailAlreadyInUse = fs.readFileSync(__dirname + '/server/emailAlreadyInUseEmail.html');
           nodeTransporter.sendMail(
             {
               from: credentials.user,
               to: recipient,
               subject: "Email Already in Use",
-              html: `<p>Your email has already been used!</p><br><a href='https://sportspc.ml/'>Back to site</a>`,
+              html: emailAlreadyInUse,
             },
             (err) => {
               if (err) console.log(err);
@@ -81,7 +82,49 @@ router.route("/verify").post((req, res, next) => {
                 from: credentials.user,
                 to: recipient,
                 subject: "Email Verification",
-                html: `<p>Click below to sign-up!</p><br><a href='https://sportspc.ml/signup/signup.html?userCode=${encodedEmail}'>Verify</a>`,
+                html: `<head>
+                <style>
+                  p {text-align: center;font-size:x-large}
+                 
+                  div {
+                    width: 50vw;
+                      height: 50vh;
+                      position: absolute;
+                      left: 25vw;
+                      text-align: center;
+                      display: block;
+                  }
+              
+                  button {
+                border: none;
+                color: white;
+                padding: 16px 32px;
+                text-align: center;
+                margin: auto;
+                font-size: 16px;
+                margin: auto;
+                cursor: pointer;
+                text-decoration: none;
+              }
+              
+              .button1 {
+                background-color: white; 
+                color: black; 
+                border: 2px solid #4c82af;
+              }
+              .button1:hover {
+                background-color: #4c82af;
+                color: white;
+              }
+                </style>
+                </head>
+                <body>
+                  <div>
+                    <p>Click below to sign-up!</p><br>
+                  <a href='https://sportspc.ml/signup/signup.html?userCode=${encodedEmail}'>
+                    <button class="button1">Verify</button>
+                  </a>
+                  </div>`,
               },
               (err) => {
                 if (err) console.log(err);
@@ -139,13 +182,13 @@ router
           let recipient = req.body.email;
           if (results[0]) {
             // If this is true that means email is already registered, so send email to tell user that the email is already in use
-
+            let emailAlreadyInUse = fs.readFileSync(__dirname + '/server/emailAlreadyInUseEmail.html');
             nodeTransporter.sendMail(
               {
                 from: credentials.user,
                 to: recipient,
                 subject: "Email Already in Use",
-                html: `<p>Your email has already been used!</p><br><a href='https://sportspc.ml/'>Back to site</a>`,
+                html: emailAlreadyInUse,
               },
               (err) => {
                 if (err) console.log(err);
