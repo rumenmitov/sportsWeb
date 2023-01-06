@@ -12,15 +12,15 @@
 <body>
     <form action="https://89.116.228.40:5454/server/teams/" method="post">
         <label for="team1">Team A</label>
-        <select name="team1" id="team1">
+        <select name="team1" id="team1" required>
             <option value="" disabled selected hidden>Choose from below 👇</option>
         </select>
-        <input type="number" name="team1score">
+        <input type="number" name="team1score" required>
         <label for="team2">Team B</label>
-        <select name="team2" id="team2">
+        <select name="team2" id="team2" required>
             <option value="" disabled selected hidden>Choose from below 👇</option>
         </select>
-        <input type="number" name="team2score">
+        <input type="number" name="team2score" required>
         <input type="submit" value="Submit">
     </form>
 
