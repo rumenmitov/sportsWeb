@@ -176,10 +176,10 @@ router
         let dbTeams = client.db("basketballTournament").collection("teams");
 
         // Check if participant is already signed up
-        db.find({ email: req.body.email }).toArray((err, results) => {
+        db.find({ email: req.body.email.toLowerCase() }).toArray((err, results) => {
           if (err) console.log(err);
 
-          let recipient = req.body.email;
+          let recipient = req.body.email.toLowerCase();
           if (results[0]) {
             // If this is true that means email is already registered, so send email to tell user that the email is already in use
             let emailAlreadyInUse = fs.readFileSync(__dirname + '/server/email/emailAlreadyInUseEmail.html');
@@ -200,15 +200,15 @@ router
             );
           } else {
             let newParticipant = {
-              firstName: req.body.firstName,
-              lastName: req.body.lastName,
+              firstName: req.body.firstName.toUpperCase(),
+              lastName: req.body.lastName.toUpperCase(),
               dob: req.body.dob,
-              class: req.body.class,
-              email: req.body.email,
+              class: req.body.class.toUpperCase(),
+              email: req.body.email.toLowerCase(),
             };
             if (req.body.team === "newTeam")
-              newParticipant.team = req.body.newTeam;
-            else newParticipant.team = req.body.team;
+              newParticipant.team = req.body.newTeam.toUpperCase();
+            else newParticipant.team = req.body.team.toUpperCase();
 
             db.insertOne(newParticipant, (err, docs) => {
               if (err) console.log(err);
