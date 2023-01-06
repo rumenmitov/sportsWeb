@@ -15,13 +15,14 @@ const sslOptions = {
 };
 
 // URL for MongoDB Atlas
+const atlasPass = fs.readFileSync(__dirname + '/.gitignore/atlasPass.txt', 'utf-8');
 const AtlasUrl =
-  "mongodb+srv://pc:R9wlrSS7hDEmhbSx@sportswebsite.pypjb10.mongodb.net/?retryWrites=true&w=majority";
+  `mongodb+srv://pc:${atlasPass}@sportswebsite.pypjb10.mongodb.net/?retryWrites=true&w=majority`;
 
 // Credentials for PC email and the email setup
 const credentials = {
   user: "sports.pclux1@gmail.com",
-  pass: "kneklawtmqepycpp",
+  pass: fs.readFileSync(__dirname + '/.gitignore/emailPass.txt', 'utf-8'),
 };
 
 let nodeTransporter = nodemailer.createTransport({
