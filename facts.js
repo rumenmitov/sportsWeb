@@ -15,7 +15,7 @@ let app = express()
 .use(bodyParser())
 .get('/', (req, res)=>{
     let factsFile = fs.readFileSync(__dirname + '/facts.txt', 'utf-8');
-    factsArray = factsFile.split('\r\n');
+    factsArray = factsFile.split('\n');
 
     res.json(factsArray);
     res.end();
