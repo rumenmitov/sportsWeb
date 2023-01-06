@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const https = require('https');
 const fs = require('fs');
 
@@ -10,6 +11,7 @@ const sslOptions = {
   };
 
 let app = express()
+.use(cors())
 .use(bodyParser())
 .get('/', (req, res)=>{
     let factsFile = fs.readFileSync(__dirname + '/facts.txt', 'utf-8');
