@@ -55,7 +55,7 @@ router.route("/verify").post((req, res, next) => {
         let recipient = req.body.email;
         if (results[0]) {
           // If this is true that means email is already registered, so send email to tell user that the email is already in use
-          let emailAlreadyInUse = fs.readFileSync(__dirname + '/server/emailAlreadyInUseEmail.html');
+          let emailAlreadyInUse = fs.readFileSync(__dirname + '/server/email/emailAlreadyInUseEmail.html');
           nodeTransporter.sendMail(
             {
               from: credentials.user,
@@ -182,7 +182,7 @@ router
           let recipient = req.body.email;
           if (results[0]) {
             // If this is true that means email is already registered, so send email to tell user that the email is already in use
-            let emailAlreadyInUse = fs.readFileSync(__dirname + '/server/emailAlreadyInUseEmail.html');
+            let emailAlreadyInUse = fs.readFileSync(__dirname + '/server/email/emailAlreadyInUseEmail.html');
             nodeTransporter.sendMail(
               {
                 from: credentials.user,
