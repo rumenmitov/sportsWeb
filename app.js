@@ -34,7 +34,7 @@ let router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
 
 router.route("/verify").post((req, res, next) => {
-  let recipient = req.body.email;
+  let recipient = req.body.email.toLowerCase();
 
   if (recipient.split("@")[1] !== "student.eursc.eu") {
     res.sendFile(__dirname + "/server/responsePages/invalidEmail.html");
