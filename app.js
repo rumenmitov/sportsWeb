@@ -196,7 +196,6 @@ router
                   __dirname + "/server/responsePages/emailAlreadyInUse.html"
                 );
                 client.close();
-                return next();
               }
             );
           } else {
