@@ -375,7 +375,7 @@ router
     if (req.body.team1score === req.body.team2score) {
       res.sendFile(__dirname + '/server/responsePages/scoreError.html');
     } else {
-      if (req.body.team1score > req.body.team2score) {
+      if (Number(req.body.team1score) > Number(req.body.team2score)) {
         team1won = true;
         team2won = false;
       } else {
