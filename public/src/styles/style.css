@@ -11,8 +11,19 @@ body {
     background-color: white;
 }
 
+:root{
+    --fade-red: #f44336;
+}
+
 header {
     min-height: 15vh;
+    width: 100%;
+    background-image: linear;
+    position: relative;
+}
+
+footer{
+    min-height: 10vh;
     width: 100%;
     background-image: linear;
     position: relative;
@@ -25,39 +36,52 @@ nav {
     align-items: center;
 }
 
-:root{
-    --fade-red: #f44336;
+h1 {
+    font-size: 2vw;
+    font-weight: 500;
 }
 
-#logo {
-    width: 10px;
-    font-size: 25px;
-    text-decoration: none;
+h2 {
+    font-size: 1vw;
+    font-weight: 400;
+}
+
+h3 {
+    font-size: 1vw;
+    font-weight: 600;
+}
+
+p {
+    font-size: 0.9vw;
+    font-weight: 400;
+}
+
+a {
     color: black;
-
+    text-decoration: none;
+    font-size: 0.9vw;
 }
 
-.left-header {
+img {
+    width: 3vw;
+    height: 3vw;
+    object-fit: contain;
+    margin-right: 1vw;
+}
+
+.right-header {
     flex: 1;
     text-align: right;
-
-
 }
 
-.left-header ul li {
+.right-header ul li {
     list-style: none;
     display: inline-block;
     padding: 8px 12px;
     position: relative;
 }
 
-.left-header ul li a {
-    color: black;
-    text-decoration: none;
-    font-size: 15px;
-}
-
-.left-header ul li::after {
+.right-header ul li::after {
     content: "";
     width: 0%;
     height: 2px;
@@ -67,10 +91,45 @@ nav {
     transition: 0.25s;
 }
 
-.left-header ul li:hover::after {
+.right-header ul li:hover::after {
     width: 100%;
-
 }
+
+.centered {
+    margin-top: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-footer {
+    text-align: right;
+}
+
+.right-footer ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+
+.right-footer ul li::after {
+    content: "";
+    width: 0%;
+    height: 2px;
+    background: black;
+    display: block;
+    margin: auto;
+    transition: 0.25s;
+}
+
+.right-footer ul li:hover::after {
+    width: 100%;
+}
+
+
+
 
 
 .hero-btn {
@@ -130,16 +189,4 @@ a.hero-btn:hover {
 
 .left-header ul {
     padding: 30px;
-
 }
-
-/*----- lisbt -----*/
-
-img {
-    width: 80%;
-    position: relative;
-    margin: 40px;
-
-
-}
-
