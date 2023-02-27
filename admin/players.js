@@ -1,7 +1,7 @@
 // Random NBA facts while waiting for server
 let nbaFacts = [];
 let factsRequest = new XMLHttpRequest();
-factsRequest.open('GET', "https://172.105.130.226/");
+factsRequest.open('GET', "https://172.105.130.226/facts");
 factsRequest.send(null);
 
 factsRequest.onload = function() {
@@ -91,7 +91,7 @@ function getResults() {
   // Handling data from server
   let xhttp = new XMLHttpRequest();
 
-  xhttp.open("GET", "https://89.116.228.40:5454/server/participants/");
+  xhttp.open("GET", "https://172.105.130.226/server/participants/");
   xhttp.send(null);
 
   xhttp.onload = function () {

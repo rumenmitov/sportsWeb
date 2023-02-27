@@ -530,6 +530,15 @@ router.route('/bugs').post((req, res)=>{
   });
 });
 
+// This part of the router is for the loading screen facts
+router.route('/facts').get((req, res)=>{
+  let factsFile = fs.readFileSync(__dirname + '/facts.txt', 'utf-8');
+  factsArray = factsFile.split('\n');
+
+  res.json(factsArray);
+  res.end();
+});
+
 // Credentials for admin portal
 const authCredentials = {
   user: process.env.AUTH_USER,
