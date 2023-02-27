@@ -24,7 +24,7 @@ let coverText = document.querySelector("#coverText");
 let factsDiv = document.querySelector('#factsDiv');
 
 let xhttp = new XMLHttpRequest();
-xhttp.open("GET", "https://89.116.228.40:5454/server/teams/");
+xhttp.open("GET", "https://172.105.130.226/server/teams/");
 xhttp.send(null);
 
 xhttp.onload = function () {
