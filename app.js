@@ -1,5 +1,6 @@
 // Packages
 const fs = require("fs"),
+  http = require('http'),
   https = require("https"),
   express = require("express"),
   bodyParser = require("body-parser"),
@@ -8,21 +9,21 @@ const fs = require("fs"),
   mongo = require("mongodb"),
   MongoClient = mongo.MongoClient;
 
+  require('dotenv').config();
+
 // SSL certificate is kept only at the server
 const sslOptions = {
-  key: fs.readFileSync("../sslCertificate/key.pem"),
-  cert: fs.readFileSync("../sslCertificate/cert.pem"),
+  key: fs.readFileSync("sslCertificate/key.pem"),
+  cert: fs.readFileSync("sslCertificate/cert.pem"),
 };
 
 // URL for MongoDB Atlas
-const atlasPass = fs.readFileSync(__dirname + '/.gitignore/atlasPass.txt', 'utf-8');
-const AtlasUrl =
-  `mongodb+srv://pc:${atlasPass}@sportswebsite.pypjb10.mongodb.net/?retryWrites=true&w=majority`;
+const AtlasUrl = process.env.ATLAS_URL;
 
 // Credentials for PC email and the email setup
 const credentials = {
-  user: "sports.pclux1@gmail.com",
-  pass: fs.readFileSync(__dirname + '/.gitignore/emailPass.txt', 'utf-8'),
+  user: process.env.EMAIL,
+  pass: process.env.EMAIL_PASS
 };
 
 let nodeTransporter = nodemailer.createTransport({
@@ -122,7 +123,7 @@ router.route("/verify").post((req, res, next) => {
                 <body>
                   <div>
                     <p>Click below to sign-up!</p><br>
-                  <a href='https://sportspc.ml/signup/signup.html?userCode=${encodedEmail}'>
+                  <a href='https://172.105.130.226/signup/signup.html?userCode=${encodedEmail}'>
                     <button class="button1">Verify</button>
                   </a>
                   </div>`,
@@ -252,7 +253,7 @@ router
                           <hr>
                           <h2>Your teammates are:</h2>
                           <p>${listOfTeammates}</p>
-                          <a href='https://sportspc.ml/'>Back to site</a>`,
+                          <a href='https://172.105.130.226/'>Back to site</a>`,
                         },
                         (err) => {
                           if (err) console.log(err);
@@ -278,7 +279,7 @@ router
                           <p><b>Date of Birth:</b> ${newParticipant.dob}</p>
                           <p><b>Class:</b> ${newParticipant.class}</p>
                           <p><b>Team:</b> ${newParticipant.team}</p>
-                          <a href='https://sportspc.ml/'>Back to site</a>`,
+                          <a href='https://172.105.130.226/'>Back to site</a>`,
                         },
                         (err) => {
                           if (err) console.log(err);
@@ -318,7 +319,7 @@ router
                         <p><b>Team:</b> ${newParticipant.team}</p>
                         <hr>
                         <p>You do not have any teammates yet. You will be notified if other players join your team.</p>
-                        <a href='https://sportspc.ml/'>Back to site</a>`,
+                        <a href='https://172.105.130.226/'>Back to site</a>`,
                       },
                       (err) => {
                         if (err) console.log(err);
@@ -529,8 +530,53 @@ router.route('/bugs').post((req, res)=>{
   });
 });
 
-// Finally, launching the server on port 5454
-let app = express().use(cors()).use("/server", router);
-https.createServer(sslOptions, app).listen(5454);
+// Credentials for admin portal
+const authCredentials = {
+  user: process.env.AUTH_USER,
+  pass: process.env.AUTH_PASS
+};
 
-console.log("listening on port 5454");
+function auth(req, res, next) {
+  function send401() {
+    res.writeHead(401, { "WWW-Authenticate": "Basic" });
+    res.end();
+  }
+
+  let authHeader = req.headers.authorization;
+
+  if (!authHeader) {
+    send401();
+    return;
+  }
+
+  let auth = new Buffer(authHeader.split(" ")[1], "base64")
+    .toString()
+    .split(":");
+  let user = auth[0];
+  let pass = auth[1];
+
+  if (user == authCredentials.user && pass == authCredentials.pass) {
+    next(); // all good
+  } else send401();
+}
+
+// Finally, launching the server
+let app = express()
+  .use(cors())
+  // Login to admin portal
+  .use("/admin", auth)
+  .use("/admin", express.static(__dirname + "/admin", { index: "admin.html" }))
+  // Normal website
+  .use(express.static(__dirname + "/public"))
+  .use("/server", router);
+https.createServer(sslOptions, app).listen(443);
+
+// Redirecting HTTP trffic
+http
+  .createServer((req, res) => {
+    res.writeHead(301, { "Location": "https://172.105.130.226" });
+    res.end();
+  })
+  .listen(80);
+
+console.log("listening on port 443");

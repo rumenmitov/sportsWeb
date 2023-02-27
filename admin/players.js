@@ -1,7 +1,7 @@
 // Random NBA facts while waiting for server
 let nbaFacts = [];
 let factsRequest = new XMLHttpRequest();
-factsRequest.open('GET', "https://89.116.228.40:6969/");
+factsRequest.open('GET', "https://172.105.130.226/");
 factsRequest.send(null);
 
 factsRequest.onload = function() {
@@ -221,7 +221,7 @@ let deleteParticipant = function (userInfo) {
     factsDiv.style.display = 'none';
 
     document.write(
-      `${xhttp.responseText}<br><button onclick='location.href="https://sportspc.ml/admin";'>Go back</button>`
+      `${xhttp.responseText}<br><button onclick='location.href="https://172.105.130.226/admin";'>Go back</button>`
     );
   };
 };
