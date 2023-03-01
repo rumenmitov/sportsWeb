@@ -7,6 +7,7 @@ const fs = require("fs"),
   cors = require("cors"),
   nodemailer = require("nodemailer"),
   mongo = require("mongodb"),
+  colors = require("colors"),
   MongoClient = mongo.MongoClient;
 
   require('dotenv').config();
@@ -588,4 +589,7 @@ http
   })
   .listen(80);
 
-console.log("listening on port 443");
+console.clear();
+console.log('\n----------------------------------------\n');
+console.log(`Website hosted on: https://${process.env.DOMAIN}`.yellow);
+console.log('\n----------------------------------------\n\n');
