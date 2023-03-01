@@ -583,7 +583,7 @@ https.createServer(sslOptions, app).listen(443);
 // Redirecting HTTP trffic
 http
   .createServer((req, res) => {
-    res.writeHead(301, { "Location": "https://172.105.130.226" });
+    res.writeHead(301, { "Location": "https://sport.pupilscom-esl1.eu" });
     res.end();
   })
   .listen(80);
