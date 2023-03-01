@@ -123,7 +123,7 @@ router.route("/verify").post((req, res, next) => {
                 <body>
                   <div>
                     <p>Click below to sign-up!</p><br>
-                  <a href='https://172.105.130.226/signup/signup.html?userCode=${encodedEmail}'>
+                  <a href='https://${process.env.DOMAIN}/signup/signup.html?userCode=${encodedEmail}'>
                     <button class="button1">Verify</button>
                   </a>
                   </div>`,
@@ -253,7 +253,7 @@ router
                           <hr>
                           <h2>Your teammates are:</h2>
                           <p>${listOfTeammates}</p>
-                          <a href='https://172.105.130.226/'>Back to site</a>`,
+                          <a href='https://${process.env.DOMAIN}/'>Back to site</a>`,
                         },
                         (err) => {
                           if (err) console.log(err);
@@ -279,7 +279,7 @@ router
                           <p><b>Date of Birth:</b> ${newParticipant.dob}</p>
                           <p><b>Class:</b> ${newParticipant.class}</p>
                           <p><b>Team:</b> ${newParticipant.team}</p>
-                          <a href='https://172.105.130.226/'>Back to site</a>`,
+                          <a href='https://${process.env.DOMAIN}'>Back to site</a>`,
                         },
                         (err) => {
                           if (err) console.log(err);
@@ -319,7 +319,7 @@ router
                         <p><b>Team:</b> ${newParticipant.team}</p>
                         <hr>
                         <p>You do not have any teammates yet. You will be notified if other players join your team.</p>
-                        <a href='https://172.105.130.226/'>Back to site</a>`,
+                        <a href='https://${process.env.DOMAIN}'>Back to site</a>`,
                       },
                       (err) => {
                         if (err) console.log(err);
@@ -583,7 +583,7 @@ https.createServer(sslOptions, app).listen(443);
 // Redirecting HTTP trffic
 http
   .createServer((req, res) => {
-    res.writeHead(301, { "Location": "https://sport.pupilscom-esl1.eu" });
+    res.writeHead(301, { "Location": `https://${process.env.DOMAIN}` });
     res.end();
   })
   .listen(80);
