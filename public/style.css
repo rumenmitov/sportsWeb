@@ -303,3 +303,9 @@ button[type="submit"]:hover {
 #randomFacts {
     font-size: 18px;
 }
+
+.who_are {
+    background-color: gray;
+    color: white;
+    padding: 20px;
+  }

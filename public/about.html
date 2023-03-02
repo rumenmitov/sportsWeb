@@ -13,7 +13,34 @@
 
     <!-- Links -->
     <link rel="stylesheet" href="./src/styles/style.css" />
-</head>
+    <style>
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 200px;
+            margin: 20px 0;
+            background-color: #f2f2f2;
+            position: relative;
+        }
+    
+        section::before {
+            content: "";
+            display: block;
+            padding-top: 100%;
+        }
+    
+        .section-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
 
 <body>
     <header>
@@ -30,21 +57,40 @@
             </div>
         </nav>
     </header>
-    <main style="text-align:center">
-        <section>
+
+    
+    <section>
+        <div class="section-content">
             <h1>Who Are We?</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed feugiat lacus. Praesent rhoncus, nulla quis accumsan mollis, lacus lectus efficitur nunc, id aliquet sapien sapien nec arcu. Nulla facilisi.</p>
-        </section>
-        <section>
+            <p style="font-size: 10px">We are the Pupils' Committee of the European School Luxembourg. Promoting the wellbeing of students is a top priority, and we believe that sports plays a crucial role in achieving this goal. Physical activity has diverse benefits, and it also fosters important social and civic values such as team spirit and solidarity. To promote these ideals, we have organized a basketball tournament this year and are considering expanding it in the future.</p>
+        </div>
+    </section>
+    
+    <section>
+        <div class="section-content">
             <h1>3x3 Basketball Tournament</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed feugiat lacus. Praesent rhoncus, nulla quis accumsan mollis, lacus lectus efficitur nunc, id aliquet sapien sapien nec arcu. Nulla facilisi.</p>
-        </section>
-        <section>
+            <p>The tournament is broken down into two different stages: 1. Group stages and 2. Knockout stage</p>
+        </div>
+    </section>
+    
+    <section>
+        <div class="section-content">
             <h1>Tournament Format</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed feugiat lacus. Praesent rhoncus, nulla quis accumsan mollis, lacus lectus efficitur nunc, id aliquet sapien sapien nec arcu. Nulla facilisi.</p>
-        </section>
-        <section>
+        </div>
+    </section>
+    
+    <section>
+        <div class="section-content">
             <h1>Rules</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sed feugiat lacus. Praesent rhoncus, nulla quis accumsan mollis, lacus lectus efficitur nunc, id aliquet sapien sapien nec arcu. Nulla facilisi.</p>
-        </section>
-    </main>
+        </div>
+    </section>
+    
+    
+</head>
+
+<body>
+
+
+   
