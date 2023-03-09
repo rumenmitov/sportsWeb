@@ -1,7 +1,7 @@
 // Random NBA facts while waiting for server
 let nbaFacts = [];
 let factsRequest = new XMLHttpRequest();
-factsRequest.open('GET', "https://sport.pupilscom-esl1.eu /server/facts");
+factsRequest.open('GET', "https://sport.pupilscom-esl1.eu/server/facts");
 factsRequest.send(null);
 
 factsRequest.onload = function() {
@@ -91,7 +91,7 @@ function getResults() {
   // Handling data from server
   let xhttp = new XMLHttpRequest();
 
-  xhttp.open("GET", "https://sport.pupilscom-esl1.eu /server/participants/");
+  xhttp.open("GET", "https://sport.pupilscom-esl1.eu/server/participants/");
   xhttp.send(null);
 
   xhttp.onload = function () {
@@ -221,7 +221,7 @@ let deleteParticipant = function (userInfo) {
     factsDiv.style.display = 'none';
 
     document.write(
-      `${xhttp.responseText}<br><button onclick='location.href="https://sport.pupilscom-esl1.eu /admin";'>Go back</button>`
+      `${xhttp.responseText}<br><button onclick='location.href="https://sport.pupilscom-esl1.eu/admin";'>Go back</button>`
     );
   };
 };
