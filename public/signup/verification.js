@@ -1,7 +1,7 @@
 // Random NBA facts while waiting for server
 let nbaFacts = [];
 let factsRequest = new XMLHttpRequest();
-factsRequest.open('GET', "https://172.105.130.226/server/facts");
+factsRequest.open('GET', "https://sport.pupilscom-esl1.eu /server/facts");
 factsRequest.send(null);
 
 factsRequest.onload = function() {
