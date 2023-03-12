@@ -11,38 +11,163 @@ body {
     position: relative;
 }
 
-:root{
-    --fade-red: #f44336;
+p {
+    font-size: 14px;
+    font-weight: 400;
 }
 
-footer{
-    min-height: 10vh;
+a {
+    text-decoration: none;
+    font-size: 14px;
+    margin: 2.5%;
+    color: black;
+}
+
+h1{
+    font-size: 22px;
+    font-weight: 500;
+}
+
+h2{
+    font-size: 16px;
+    font-weight: 500;
+    padding: 5%;
+}
+
+header {
     width: 100%;
-    background-image: linear;
-    position: relative;
-} 
-
-.right-footer {
-    text-align: right;
 }
 
-.right-footer ul li {
-    list-style: none;
-    display: inline-block;
-    padding: 8px 12px;
-    position: relative;
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 5%;
 }
 
-.right-footer ul li::after {
-    content: "";
-    width: 0%;
-    height: 2px;
-    background: black;
-    display: block;
-    margin: auto;
-    transition: 0.25s;
-}
-
-.right-footer ul li:hover::after {
+nav div {
     width: 100%;
+    align-items: center;
+}
+
+nav img {
+    width: 35px;
+    height: 35px;
+}
+
+.links {
+   padding: 5%;
+}
+
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20% 5% 20% 5%;
+    flex-direction: column;
+}
+
+.button {
+    text-align: center;
+    width: 100px;
+    background-color: lightgrey;
+    padding: 2%;
+    border-radius: 20px;
+    color: black;
+}
+
+.teams {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+hr {
+    border: 1px solid black;
+}
+
+table {
+    margin: 5%;
+    border-collapse: collapse;
+    width: 65%;
+}
+  
+td, th {
+    border: 1px solid black;
+    text-align: left;
+    padding: 1%;
+}
+
+
+@media screen and (min-width: 900px) {
+    p {
+        font-size: 24px;
+        font-weight: 400;
+    }
+    
+    a {
+        text-decoration: none;
+        font-size: 24px;
+        margin: 2.5%;
+        color: black;
+    }
+
+    h1{
+        font-size: 36px;
+        font-weight: 500;
+    }
+
+    h2{
+        font-size: 28px;
+        font-weight: 500;
+        padding: 2.5%;
+    }
+
+    header {
+        width: 100%;
+    }
+    
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 0% 5% 0% 5%;
+    }
+
+    nav div {
+        width: 30%;
+        align-items: center;
+    }
+
+    nav img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .links {
+        width: 30%;
+    }
+
+    section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 10% 5% 10% 5%;
+        flex-direction: column;
+    }
+
+    .button {
+        text-align: center;
+        width: 150px;
+        background-color: lightgrey;
+        padding: 1%;
+        border-radius: 50px;
+        color: black;
+    }
 }
