@@ -85,49 +85,11 @@ router.route("/verify").post((req, res, next) => {
                 from: credentials.user,
                 to: recipient,
                 subject: "Email Verification",
-                html: `<head>
-                <style>
-                  p {text-align: center;font-size:x-large}
-                 
-                  div {
-                    width: 50vw;
-                      height: 50vh;
-                      position: absolute;
-                      left: 25vw;
-                      text-align: center;
-                      display: block;
-                  }
-              
-                  button {
-                border: none;
-                color: white;
-                padding: 16px 32px;
-                text-align: center;
-                margin: auto;
-                font-size: 16px;
-                margin: auto;
-                cursor: pointer;
-                text-decoration: none;
-              }
-              
-              .button1 {
-                background-color: white; 
-                color: black; 
-                border: 2px solid #4c82af;
-              }
-              .button1:hover {
-                background-color: #4c82af;
-                color: white;
-              }
-                </style>
-                </head>
-                <body>
-                  <div>
+                html: `
                     <p>Click below to sign-up!</p><br>
-                  <a href='https://${process.env.DOMAIN}/signup/signup.html?userCode=${encodedEmail}'>
-                    <button class="button1">Verify</button>
+                  <a href='https://${process.env.DOMAIN}/signup/signup.html?userCode=${encodedEmail}'>Sign-up
                   </a>
-                  </div>`,
+               `,
               },
               (err) => {
                 if (err) console.log(err);
