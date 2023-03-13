@@ -14,8 +14,8 @@ const fs = require("fs"),
 
 // SSL certificate is kept only at the server
 const sslOptions = {
-  key: fs.readFileSync("sslCertificate/key.pem"),
-  cert: fs.readFileSync("sslCertificate/cert.pem"),
+  key: fs.readFileSync("sslCertificate/sport.pupilscom-esl1.eu.key"),
+  cert: fs.readFileSync("sslCertificate/sport.pupilscom-esl1.eu.pem"),
 };
 
 // URL for MongoDB Atlas
