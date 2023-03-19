@@ -38,6 +38,15 @@ header {
     width: 100%;
 }
 
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20% 5% 20% 5%;
+    flex-direction: column;
+}
+
 nav {
     display: flex;
     align-items: center;
@@ -60,13 +69,9 @@ nav img {
    padding: 5%;
 }
 
-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 20% 5% 20% 5%;
-    flex-direction: column;
+.header{
+    font-size: 36px;
+    font-weight: 500;
 }
 
 .button {
@@ -131,6 +136,15 @@ td, th {
         width: 100%;
     }
     
+    section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 10% 5% 10% 5%;
+        flex-direction: column;
+    }
+
     nav {
         display: flex;
         align-items: center;
@@ -153,13 +167,9 @@ td, th {
         width: 30%;
     }
 
-    section {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        padding: 10% 5% 10% 5%;
-        flex-direction: column;
+    .header{
+        font-size: 36px;
+        font-weight: 500;
     }
 
     .button {
