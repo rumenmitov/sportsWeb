@@ -3,7 +3,7 @@
 * {
     padding: 0;
     margin: 0;
-    font-family: 'RobotoRegular', sans-serif;
+    font-family: 'VarelaRound', sans-serif;
 }
 
 body {
@@ -52,12 +52,13 @@ nav {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 5%;
+    padding: 0% 5% 0% 5%;
 }
 
 nav div {
     width: 100%;
     align-items: center;
+    padding: 5% 2.5% 5% 2.5%;
 }
 
 nav img {
@@ -65,12 +66,13 @@ nav img {
     height: 35px;
 }
 
-.links {
-   padding: 5%;
+header nav .links {
+    margin-top: -2.5%;
+    width: 100%;
 }
 
 .header{
-    font-size: 36px;
+    font-size: 22px;
     font-weight: 500;
 }
 
@@ -93,18 +95,30 @@ nav img {
 
 hr {
     border: 1px solid black;
+    width: 25%;
 }
 
 table {
-    margin: 5%;
+    margin: 10%;
     border-collapse: collapse;
-    width: 65%;
+    width: 75%;
+    font-size: 12px;
+    overflow-wrap: break-word;
 }
   
 td, th {
     border: 1px solid black;
     text-align: left;
-    padding: 1%;
+    padding: 2%;
+}
+
+footer {
+    width: 100%;
+    margin: -2.5% 0% -2.5% 0%;
+}
+
+footer nav .links {
+    margin-top: -5%;
 }
 
 
@@ -156,6 +170,7 @@ td, th {
     nav div {
         width: 30%;
         align-items: center;
+        padding: 5% 2.5% 5% 2.5%;
     }
 
     nav img {
@@ -163,8 +178,8 @@ td, th {
         height: 50px;
     }
 
-    .links {
-        width: 30%;
+    header nav .links {
+        width: 22.5%;
     }
 
     .header{
@@ -179,5 +194,42 @@ td, th {
         padding: 1%;
         border-radius: 50px;
         color: black;
+    }
+
+    .teams {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    
+    hr {
+        border: 1px solid black;
+        width: 10%;
+    }
+    
+    table {
+        margin: 5%;
+        border-collapse: collapse;
+        width: 65%;
+        font-size: 24px;
+        overflow-wrap: break-word;
+    }
+      
+    td, th {
+        border: 1px solid black;
+        text-align: left;
+        padding: 1%;
+    }
+
+    footer {
+        width: 100%;
+        margin: -2.5% 0% -2.5% 0%;
+    }
+
+    footer nav .links {
+        width: 17.5%;
+        margin-top: 0%;
     }
 }
