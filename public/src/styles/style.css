@@ -81,7 +81,7 @@ header nav .links {
     width: 100px;
     background-color: lightgrey;
     padding: 2%;
-    border-radius: 20px;
+    border-radius: 50px;
     color: black;
 }
 
@@ -119,6 +119,44 @@ footer {
 
 footer nav .links {
     margin: -5% 0% -5% 0%;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+label {
+    font-size: 16px;
+    margin: 25% 0% 5% 0%;
+}
+
+input {
+    width: 50%;
+    height: 15px;
+    font-size: 12px;
+    margin-bottom: 5%;
+    border-radius: 20px;
+    border: 1.5px solid black;
+    padding: 1% 2% 1% 2%;
+}
+
+.btn {
+    width: 25%;
+    height: 45px;
+    font-size: 16px;
+    border-radius: 50px;
+    border: 0px;
+    background-color: lightgrey;
+    cursor: pointer;
+    padding: 2%;
+}
+
+.pad {
+    margin-top: -10%;
 }
 
 
@@ -252,14 +290,22 @@ footer nav .links {
         height: 25px;
         font-size: 20px;
         margin-bottom: 2%;
+        border-radius: 20px;
+        border: 1.5px solid black;
+        padding: 0.25% 0.5% 0.25% 0.5%;
     }
 
-    .button2 {
-        width: 5%;
-        height: 25px;
-        font-size: 20px;
-        margin-bottom: 2%;
-        border-radius: 20%;
-        background-color: grey;
+    .btn {
+        width: 7.5%;
+        height: 60px;
+        font-size: 24px;
+        border-radius: 50px;
+        border: 0px;
+        background-color: lightgrey;
+        cursor: pointer;
+    }
+
+    .pad {
+        margin-top: -10%;
     }
 }
