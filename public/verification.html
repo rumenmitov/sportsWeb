@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>PC Sports | Verification</title>
+    <meta name="title" content="PC Sports Tournament">
+    <meta name="description" content="PC Sports Tournament">
+
+    <!-- Links -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="icon" href="./src/assets/images/logo.ico" type="image/ico" sizes="1024x1024">
+    <link rel="stylesheet" href="./src/styles/style.css" />
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div style="display: inline-flex;">
+                <img src="./src/assets/images/pc_logo.png" alt="PC Logo" style="padding-right: 2.5%;">
+                <a href="./index.html" class="header">SPORTS TOURNAMENT</a>
+            </div>
+            <div class="links">
+                <a href="./results.html">TEAMS</a>
+                <a href="./about.html">ABOUT</a>
+                <a href="./contact.html">CONTACT</a>
+            </div>
+        </nav>
+    </header>
+
+    <form action="https://sport.pupilscom-esl1.eu/server/verify/" method="post">
+        <label for="email">Please enter school email:</label>
+        <input type="email" name="email" placeholder="e.g. rumen.mitov@student.eursc.eu" size="40">
+        <a class="button">
+            <input type="submit" value="Verify">
+        </a>
+        
+    </form>
+
+    <section>
+        <div id="screenCover"></div>
+        <div id="loader"></div>
+        <p id="coverText">Please wait...</p>
+        <div id="factsDiv">
+            <br>
+            <h3>Did you know...</h3>
+            <p id="randomFacts"></p>
+        </div>
+    </section>
+
+    <script src="./src/scripts/verification.js" defer></script>
+</body>
+</html>

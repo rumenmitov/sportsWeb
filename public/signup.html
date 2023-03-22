@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>PC Sports | Sign Up</title>
+    <meta name="title" content="PC Sports Tournament">
+    <meta name="description" content="PC Sports Tournament">
+
+    <!-- Links -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="icon" href="./src/assets/images/logo.ico" type="image/ico" sizes="1024x1024">
+    <link rel="stylesheet" href="./src/styles/style.css" />
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div style="display: inline-flex;">
+                <img src="./src/assets/images/pc_logo.png" alt="PC Logo" style="padding-right: 2.5%;">
+                <a href="./index.html" class="header">SPORTS TOURNAMENT</a>
+            </div>
+            <div class="links">
+                <a href="./results.html">TEAMS</a>
+                <a href="./about.html">ABOUT</a>
+                <a href="./contact.html">CONTACT</a>
+            </div>
+        </nav>
+    </header>
+
+    <p>Sign up here</p>
+
+    <form action="https://sport.pupilscom-esl1.eu/server/participants/" method="post">
+        <label for="firstName">First Name:</label>
+        <input type="text" name="firstName" required>
+        <label for="lastName">Last Name:</label>
+        <input type="text" name="lastName" required>
+        <label for="dob">Date of Birth:</label>
+        <input type="date" name="dob" required>
+        <label for="class">Class:</label>
+        <input type="text" name="class" required>
+        <div id="teamSelectBox">
+            <label for="team">Team:</label>
+            <select name="team">
+                <option value="newTeam">New Team</option>
+            </select>
+        </div>
+    </form>
+
+    <section>
+        <div id="screenCover"></div>
+        <div id="loader"></div>
+        <p id="coverText">Please wait...</p>
+        <div id="factsDiv">
+            <br>
+            <h3>Did you know...</h3>
+            <p id="randomFacts"></p>
+        </div>
+    </section>
+
+    <script src="./src/scripts/signup.js" defer></script>
+</body>
+</html>
