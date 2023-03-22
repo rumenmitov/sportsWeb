@@ -180,6 +180,7 @@ footer nav .links {
 
     header nav .links {
         width: 22.5%;
+        padding-top: 7.5%;
     }
 
     .header{
@@ -230,6 +231,35 @@ footer nav .links {
 
     footer nav .links {
         width: 17.5%;
-        margin-top: 0%;
+        margin-top: -5%;
+    }
+
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    label {
+        font-size: 26px;
+        margin: 10% 0% 2.5% 0%;
+    }
+
+    input {
+        width: 20%;
+        height: 25px;
+        font-size: 20px;
+        margin-bottom: 2%;
+    }
+
+    .button2 {
+        width: 5%;
+        height: 25px;
+        font-size: 20px;
+        margin-bottom: 2%;
+        border-radius: 20%;
+        background-color: grey;
     }
 }
