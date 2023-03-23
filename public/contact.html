@@ -32,25 +32,25 @@
     </header>
     
     <section id="reportBug">
-        <h2>Report a Bug or Leave a Compliment</h2>
+        <h2 class="report">Report a Bug or Leave a Compliment</h2>
         <form action="https://sport.pupilscom-esl1.eu/server/bugs" method="post">
             <label for="sender">From:</label>
-            <input type="text" name="sender" size='40' placeholder="Example Student" required>
+            <input type="text" name="sender" size='40' placeholder="Example Student" class="big" required>
             <label for="email">Your email:</label>
-            <input type="email" name="email" size='40' placeholder="e.g. example.student@student.eursc.eu" required>
+            <input type="email" name="email" size='40' placeholder="e.g. example.student@student.eursc.eu" class="big" required>
             <label for="type">Please indicate the type of bug / request:</label>
             <select name="type" id="type" required>
-                <option value="" disabled selected hidden>Choose from below 👇</option>
-                <option value="signup">Problems with signing up 🤳</option>
-                <option value="results">Score error 🤦‍♀️</option>
-                <option value="teams">Problems with my team 🏀</option>
-                <option value="question">Question about the tournament ❓</option>
-                <option value="praise">Praise 🤩</option>
-                <option value="other">Other 🃏</option>
+                <option value="" disabled selected hidden>Choose from below</option>
+                <option value="signup">Problems with signing up</option>
+                <option value="results">Score error</option>
+                <option value="teams">Problems with my team</option>
+                <option value="question">Question about the tournament</option>
+                <option value="praise">Praise</option>
+                <option value="other">Other</option>
             </select>
             <label for="comment">Please describe your bug / request:</label>
             <textarea name="comment" cols="40" rows="10" placeholder='Emojis are encouraged 😀'required></textarea>
-            <button type="submit">Send Report</button>
+            <button type="submit" class="btn2">Send Report</button>
         </form>
     </section>
 
