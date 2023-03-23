@@ -152,10 +152,7 @@ input {
     border: 0px;
     background-color: lightgrey;
     cursor: pointer;
-}
-
-.pad {
-    margin-top: -10%;
+    margin-bottom: 60%;
 }
 
 
@@ -302,9 +299,6 @@ input {
         border: 0px;
         background-color: lightgrey;
         cursor: pointer;
-    }
-
-    .pad {
-        margin-top: -10%;
+        margin-bottom: 0%;
     }
 }
