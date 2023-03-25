@@ -51,6 +51,7 @@ xhttp.onload = function () {
 
 let emailLabel = document.createElement("label");
 emailLabel.setAttribute("for", "email");
+emailLabel.setAttribute("style", "padding-top: -5%;");
 emailLabel.innerText = "Email:";
 signupForm.appendChild(emailLabel);
 
