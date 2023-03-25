@@ -61,7 +61,7 @@ emailInput.setAttribute("name", "email");
 emailInput.setAttribute("value", email);
 signupForm.appendChild(emailInput);
 
-let submitButton = document.createElement("button");
+let submitButton = document.createElement("input");
 submitButton.setAttribute("type", "submit");
 submitButton.setAttribute("value", "Sign-up");
 submitButton.setAttribute('id', "submitButton");
@@ -70,10 +70,6 @@ signupForm.appendChild(submitButton);
 teamSelect.addEventListener("click", () => {
   let selectedIndex = teamSelect.selectedIndex;
   let selectedOption = teamSelect[selectedIndex];
-
-  // First remove all newTeam input boxes
-  if (document.querySelector("#newTeamInput"))
-    document.querySelector("#newTeamInput").remove();
 
   if (selectedOption.value === "newTeam") {
     // Then, if newTeam option is selected, create an input box
