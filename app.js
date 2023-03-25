@@ -58,13 +58,22 @@ router.route("/verify").post((req, res, next) => {
         let recipient = req.body.email;
         if (results[0]) {
           // If this is true that means email is already registered, so send email to tell user that the email is already in use
-          let emailAlreadyInUse = fs.readFileSync(__dirname + '/server/email/emailAlreadyInUseEmail.html');
           nodeTransporter.sendMail(
             {
               from: credentials.user,
               to: recipient,
               subject: "Email Already in Use",
-              html: emailAlreadyInUse,
+	      html: `
+        <h1>Your email has already been used!</h1><br>
+        <a href="https://sport.pupilscom-esl1.eu/">
+            Back to site
+        </a>
+        <br><br><br>
+        <p>Having trouble verifying your email?<br>Click on the link below to contact us.</p>
+        <a href="https://sport.pupilscom-esl1.eu/contact.html?reportType=signup">
+            Click here
+        </a>
+	      `,
             },
             (err) => {
               if (err) console.log(err);
