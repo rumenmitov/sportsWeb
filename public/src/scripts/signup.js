@@ -59,14 +59,14 @@ let emailInput = document.createElement("input");
 emailInput.setAttribute("readonly", "true");
 emailInput.setAttribute("type", "email");
 emailInput.setAttribute("name", "email");
-emailLabel.setAttribute("class", "nspace");
+emailInput.setAttribute("class", "nspace");
 emailInput.setAttribute("value", email);
 signupForm.appendChild(emailInput);
 
 let submitButton = document.createElement("input");
 submitButton.setAttribute("type", "submit");
 submitButton.setAttribute("value", "Sign-up");
-emailLabel.setAttribute("class", "btn");
+submitButton.setAttribute("class", "btn");
 submitButton.setAttribute('id', "submitButton");
 signupForm.appendChild(submitButton);
 
