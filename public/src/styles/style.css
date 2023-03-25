@@ -235,8 +235,16 @@ h3 {
 }
 
 iframe {
-    width: 80%;
-    height: 100vh;
+    width: 100%;
+    height: 65vh;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media screen and (min-width: 900px) {
@@ -465,7 +473,15 @@ iframe {
     }
     
     iframe {
-        width: 80%;
-        height: 100vh;
+        width: 55%;
+        height: 160vh;
+        margin-top: 0%;
+        margin-bottom: 5%;
+    }
+
+    .center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 }
