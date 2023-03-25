@@ -51,7 +51,7 @@ xhttp.onload = function () {
 
 let emailLabel = document.createElement("label");
 emailLabel.setAttribute("for", "email");
-emailLabel.innerText = "Email";
+emailLabel.innerText = "Email:";
 signupForm.appendChild(emailLabel);
 
 let emailInput = document.createElement("input");
@@ -61,7 +61,7 @@ emailInput.setAttribute("name", "email");
 emailInput.setAttribute("value", email);
 signupForm.appendChild(emailInput);
 
-let submitButton = document.createElement("input");
+let submitButton = document.createElement("button");
 submitButton.setAttribute("type", "submit");
 submitButton.setAttribute("value", "Sign-up");
 submitButton.setAttribute('id', "submitButton");
