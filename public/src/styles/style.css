@@ -201,6 +201,14 @@ select {
     margin-bottom: -5%;
 }
 
+.nspace2 {
+    margin-bottom: 5%;
+}
+
+.space {
+    margin-top: 10%;
+}
+
 .two {
     width: 200px;
     height: 30px;
