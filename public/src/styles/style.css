@@ -211,8 +211,12 @@ select {
     margin-bottom: 25%;
 }
 
+.mail {
+    margin-top: 15%;
+}
+
 h3 {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     padding-bottom: 2%;
     padding-top: 10%;
@@ -423,6 +427,10 @@ iframe {
         border: 1px solid black;
         padding: 5%;
         margin-bottom: 50%;
+    }
+
+    .mail {
+        margin-top: 0%;
     }
     
     h3 {
