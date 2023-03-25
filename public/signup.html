@@ -34,19 +34,17 @@
 
     <form action="https://sport.pupilscom-esl1.eu/server/participants/" method="post">
         <label for="firstName">First Name:</label>
-        <input type="text" name="firstName" required>
+        <input type="text" name="firstName" class="nspace" required>
         <label for="lastName">Last Name:</label>
-        <input type="text" name="lastName" required>
+        <input type="text" name="lastName" class="nspace" required>
         <label for="dob">Date of Birth:</label>
-        <input type="date" name="dob" required>
+        <input type="date" name="dob" class="nspace" required>
         <label for="class">Class:</label>
-        <input type="text" name="class" required>
-        <div id="teamSelectBox">
-            <label for="team">Team:</label>
-            <select name="team">
-                <option value="newTeam">New Team</option>
-            </select>
-        </div>
+        <input type="text" name="class" class="nspace" required>
+        <label for="team">Team:</label>
+        <select name="team" id="teamSelectBox">
+            <option value="newTeam">New Team</option>
+        </select>
     </form>
 
     <section>
