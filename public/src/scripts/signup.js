@@ -72,8 +72,9 @@ teamSelect.addEventListener("click", () => {
   let selectedOption = teamSelect[selectedIndex];
 
   // First remove all newTeam input boxes
-  if (document.querySelector("#newTeamInput"))
+  if (document.querySelector("#newTeamInput")) {
     document.querySelector("#newTeamInput").remove();
+  }
 
   if (selectedOption.value === "newTeam") {
     // Then, if newTeam option is selected, create an input box
