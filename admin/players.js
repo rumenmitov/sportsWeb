@@ -211,7 +211,7 @@ let deleteParticipant = function (userInfo) {
 
   let xhttp = new XMLHttpRequest();
 
-  xhttp.open("DELETE", `https://89.116.228.40:5454/server/delete/${userInfo}`);
+  xhttp.open("DELETE", `https://sport.pupilscom-esl1.eu/server/delete/${userInfo}`);
   xhttp.send(null);
 
   xhttp.onload = () => {
