@@ -61,7 +61,7 @@ emailInput.setAttribute("name", "email");
 emailInput.setAttribute("value", email);
 signupForm.appendChild(emailInput);
 
-let submitButton = document.createElement("button");
+let submitButton = document.createElement("input");
 submitButton.setAttribute("type", "submit");
 submitButton.setAttribute("value", "Sign-up");
 submitButton.setAttribute('id', "submitButton");
