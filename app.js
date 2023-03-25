@@ -87,7 +87,7 @@ router.route("/verify").post((req, res, next) => {
                 subject: "Email Verification",
                 html: `
                     <p>Click below to sign-up!</p><br>
-                  <a href='https://${process.env.DOMAIN}/signup.html?userCode=${encodedEmail}'>Sign-up
+                  <a href='https://${process.env.DOMAIN}.html?userCode=${encodedEmail}'>Sign-up
                   </a>
                `,
               },
