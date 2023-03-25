@@ -419,6 +419,10 @@ iframe {
         margin-bottom: -5%;
     }
 
+    .nspace2 {
+        margin-bottom: 5%;
+    }
+
     .two {
         width: 200px;
         height: 45px;
@@ -426,7 +430,7 @@ iframe {
         border-radius: 25px;
         border: 1px solid black;
         padding: 5%;
-        margin-bottom: 50%;
+        margin-bottom: 25%;
     }
 
     .mail {
