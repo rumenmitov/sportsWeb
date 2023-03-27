@@ -71,6 +71,10 @@ header nav .links {
     width: 100%;
 }
 
+header nav .links > *:hover {
+  text-decoration: underline;
+}
+
 .header{
     font-size: 22px;
     font-weight: 500;
