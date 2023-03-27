@@ -543,10 +543,10 @@ body {
         color: grey;
     }
 
-    blockquote {
+    .insta {
         display: block;
         margin: 5% auto 5% auto !important;
-    }        
+    }      
 }
 
 
