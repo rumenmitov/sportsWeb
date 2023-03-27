@@ -395,7 +395,7 @@ iframe {
     }
 
     .btn3 {
-        width: 10%;
+        width: 7.5%;
         height: 60px;
         font-size: 24px;
         border-radius: 50px;
@@ -555,5 +555,21 @@ iframe {
         font-weight: 500;
         padding: 2.5%;
     }
+<<<<<<< HEAD
 }
 >>>>>>> 3a89ff915979ae55e3053b28a60b728e31384ac9
+=======
+
+    .btn3 {
+        width: 10%;
+        height: 60px;
+        font-size: 24px;
+        border-radius: 50px;
+        border: 0px;
+        background-color: lightgrey;
+        cursor: pointer;
+        margin-bottom: 5%;
+        margin-top: 10%;
+    }
+}
+>>>>>>> 3134fc9c612f3405ce4a4cd9f3b865590765085d
