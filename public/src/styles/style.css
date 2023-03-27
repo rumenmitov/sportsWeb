@@ -247,26 +247,26 @@ iframe {
     justify-content: center;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 900px) {
     p {
-        font-size: 24px;
+        font-size: 22px;
         font-weight: 400;
     }
     
     a {
         text-decoration: none;
-        font-size: 24px;
+        font-size: 22px;
         margin: 2.5%;
         color: black;
     }
 
     h1{
-        font-size: 36px;
+        font-size: 32px;
         font-weight: 500;
     }
 
     h2{
-        font-size: 28px;
+        font-size: 26px;
         font-weight: 500;
         padding: 2.5%;
     }
@@ -293,7 +293,7 @@ iframe {
     }
 
     nav div {
-        width: 45%;
+        width: 40%;
         align-items: center;
         padding: 5% 2.5% 5% 2.5%;
     }
@@ -304,12 +304,12 @@ iframe {
     }
 
     header nav .links {
-        width: 32.5%;
+        width: 30%;
         padding-top: 7.5%;
     }
 
     .header{
-        font-size: 36px;
+        font-size: 32px;
         font-weight: 500;
     }
 
@@ -514,5 +514,33 @@ iframe {
         cursor: pointer;
         margin-bottom: 0%;
         margin-top: -7.5%;
+    }
+
+    .header{
+        font-size: 36px;
+        font-weight: 500;
+    }
+
+    p {
+        font-size: 26px;
+        font-weight: 400;
+    }
+    
+    a {
+        text-decoration: none;
+        font-size: 26px;
+        margin: 2.5%;
+        color: black;
+    }
+
+    h1{
+        font-size: 36px;
+        font-weight: 500;
+    }
+
+    h2{
+        font-size: 30px;
+        font-weight: 500;
+        padding: 2.5%;
     }
 }
