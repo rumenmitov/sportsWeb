@@ -493,6 +493,18 @@ iframe {
         align-items: center;
         justify-content: center;
     }
+
+    .bg{
+        background-image: url("../assets/images/background.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        filter: blur(5px);
+    }
+
+    blockquote {
+        display: block;
+        margin: 5% auto 5% auto !important;
+    }        
 }
 
 
