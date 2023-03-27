@@ -66,7 +66,7 @@ signupForm.appendChild(emailInput);
 let submitButton = document.createElement("input");
 submitButton.setAttribute("type", "submit");
 submitButton.setAttribute("value", "Sign-up");
-submitButton.setAttribute("class", "btn space adjust");
+submitButton.setAttribute("class", "btn3");
 submitButton.setAttribute('id', "submitButton");
 signupForm.appendChild(submitButton);
 

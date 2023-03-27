@@ -213,10 +213,6 @@ select {
     margin-bottom: 5%;
 }
 
-.space {
-    margin-top: 15%;
-}
-
 .two {
     width: 200px;
     height: 30px;
@@ -251,26 +247,26 @@ iframe {
     justify-content: center;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 900px) {
     p {
-        font-size: 24px;
+        font-size: 22px;
         font-weight: 400;
     }
     
     a {
         text-decoration: none;
-        font-size: 24px;
+        font-size: 22px;
         margin: 2.5%;
         color: black;
     }
 
     h1{
-        font-size: 36px;
+        font-size: 32px;
         font-weight: 500;
     }
 
     h2{
-        font-size: 28px;
+        font-size: 26px;
         font-weight: 500;
         padding: 2.5%;
     }
@@ -308,12 +304,12 @@ iframe {
     }
 
     header nav .links {
-        width: 32.5%;
+        width: 30%;
         padding-top: 7.5%;
     }
 
     .header{
-        font-size: 36px;
+        font-size: 32px;
         font-weight: 500;
     }
 
@@ -394,12 +390,20 @@ iframe {
         border: 0px;
         background-color: lightgrey;
         cursor: pointer;
-        margin-bottom: 0%;
+        margin-bottom: 20%;
         margin-top: -7.5%;
     }
 
-    .adjust {
-        margin-bottom: 0%;
+    .btn3 {
+        width: 10%;
+        height: 60px;
+        font-size: 24px;
+        border-radius: 50px;
+        border: 0px;
+        background-color: lightgrey;
+        cursor: pointer;
+        margin-bottom: 5%;
+        margin-top: 10%;
     }
 
     textarea {
@@ -421,7 +425,8 @@ iframe {
         border: 0px;
         background-color: lightgrey;
         cursor: pointer;
-        margin: 15% 0% -25% 0%;
+        margin-top: 15%;
+        margin-bottom: -5%;
     }
     
     .big {
@@ -516,7 +521,39 @@ iframe {
         border: 0px;
         background-color: lightgrey;
         cursor: pointer;
-        margin-bottom: 0%;
+        margin-bottom: 10%;
         margin-top: -7.5%;
     }
+<<<<<<< HEAD
 }
+=======
+
+    .header{
+        font-size: 36px;
+        font-weight: 500;
+    }
+
+    p {
+        font-size: 26px;
+        font-weight: 400;
+    }
+    
+    a {
+        text-decoration: none;
+        font-size: 26px;
+        margin: 2.5%;
+        color: black;
+    }
+
+    h1{
+        font-size: 36px;
+        font-weight: 500;
+    }
+
+    h2{
+        font-size: 30px;
+        font-weight: 500;
+        padding: 2.5%;
+    }
+}
+>>>>>>> 3a89ff915979ae55e3053b28a60b728e31384ac9
