@@ -209,10 +209,6 @@ select {
     margin-bottom: 5%;
 }
 
-.space {
-    margin-top: 15%;
-}
-
 .two {
     width: 200px;
     height: 30px;
@@ -394,8 +390,16 @@ iframe {
         margin-top: -7.5%;
     }
 
-    .adjust {
-        margin-bottom: 0%;
+    .btn3 {
+        width: 10%;
+        height: 60px;
+        font-size: 24px;
+        border-radius: 50px;
+        border: 0px;
+        background-color: lightgrey;
+        cursor: pointer;
+        margin-bottom: 5%;
+        margin-top: 10%;
     }
 
     textarea {
@@ -418,6 +422,7 @@ iframe {
         background-color: lightgrey;
         cursor: pointer;
         margin-top: 15%;
+        margin-bottom: -5%;
     }
     
     .big {
