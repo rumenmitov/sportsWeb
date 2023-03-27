@@ -249,16 +249,29 @@ body {
         justify-content: center;
     }
 
-    .bg{
-        background-image: url("../assets/images/background.jpg");
+    .bg {
+        background-image: -webkit-linear-gradient(top, 
+            rgba(255, 255, 255, 1) 0%, 
+            rgba(255, 255, 255, 0.8) 0.5%, 
+            rgba(255, 255, 255, 0.6) 1%,
+            rgba(255, 255, 255, 0.4) 1.5%,
+            rgba(255, 255, 255, 0.2) 2%,
+            rgba(255, 255, 255, 0) 2.5%,
+            rgba(255, 255, 255, 0) 97.5%, 
+            rgba(255, 255, 255, 0.2) 98%, 
+            rgba(255, 255, 255, 0.4) 98.5%,
+            rgba(255, 255, 255, 0.6) 99%,
+            rgba(255, 255, 255, 0.8) 99.5%,
+            rgba(255, 255, 255, 1) 100%
+        ), url(../assets/images/background.png);
         background-size: cover;
         background-repeat: no-repeat;
-        filter: blur(5px);
+        color: black;
     }
 
     blockquote {
         display: block;
-        margin: 5% auto 15% auto !important;
+        margin: 5% auto 5% auto !important;
     } 
 }
 
@@ -510,11 +523,24 @@ body {
         justify-content: center;
     }
 
-    .bg{
-        background-image: url("../assets/images/background.jpg");
+    .bg {
+        background-image: -webkit-linear-gradient(top, 
+            rgba(255, 255, 255, 1) 0%, 
+            rgba(255, 255, 255, 0.8) 0.5%, 
+            rgba(255, 255, 255, 0.6) 1%,
+            rgba(255, 255, 255, 0.4) 1.5%,
+            rgba(255, 255, 255, 0.2) 2%,
+            rgba(255, 255, 255, 0) 2.5%,
+            rgba(255, 255, 255, 0) 97.5%, 
+            rgba(255, 255, 255, 0.2) 98%, 
+            rgba(255, 255, 255, 0.4) 98.5%,
+            rgba(255, 255, 255, 0.6) 99%,
+            rgba(255, 255, 255, 0.8) 99.5%,
+            rgba(255, 255, 255, 1) 100%
+        ), url(../assets/images/background.png);
         background-size: cover;
         background-repeat: no-repeat;
-        filter: blur(5px);
+        color: white;
     }
 
     blockquote {
