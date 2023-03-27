@@ -271,7 +271,7 @@ body {
 
     .insta {
         display: block;
-        margin: 5% !important;
+        margin: 5% auto 5% auto !important;
     } 
 }
 
