@@ -266,7 +266,7 @@ body {
         ), url(../assets/images/background.png);
         background-size: cover;
         background-repeat: no-repeat;
-        color: black;
+        color: grey;
     }
 
     blockquote {
@@ -540,7 +540,7 @@ body {
         ), url(../assets/images/background.png);
         background-size: cover;
         background-repeat: no-repeat;
-        color: white;
+        color: grey;
     }
 
     blockquote {
