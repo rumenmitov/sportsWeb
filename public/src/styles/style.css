@@ -391,7 +391,7 @@ iframe {
     }
 
     .btn3 {
-        width: 10%;
+        width: 7.5%;
         height: 60px;
         font-size: 24px;
         border-radius: 50px;
@@ -547,5 +547,17 @@ iframe {
         font-size: 30px;
         font-weight: 500;
         padding: 2.5%;
+    }
+
+    .btn3 {
+        width: 10%;
+        height: 60px;
+        font-size: 24px;
+        border-radius: 50px;
+        border: 0px;
+        background-color: lightgrey;
+        cursor: pointer;
+        margin-bottom: 5%;
+        margin-top: 10%;
     }
 }
