@@ -368,7 +368,7 @@ body {
         margin: 5%;
         border-collapse: collapse;
         width: 85%;
-        font-size: 24px;
+        font-size: 20px;
         overflow-wrap: break-word;
     }
       
@@ -623,7 +623,7 @@ body {
         margin: 5%;
         border-collapse: collapse;
         width: 85%;
-        font-size: 20px;
+        font-size: 24px;
         overflow-wrap: break-word;
     }
 }
