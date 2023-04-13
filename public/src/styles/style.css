@@ -618,4 +618,12 @@ body {
         margin-bottom: 5%;
         margin-top: 10%;
     }
+
+    table {
+        margin: 5%;
+        border-collapse: collapse;
+        width: 85%;
+        font-size: 20px;
+        overflow-wrap: break-word;
+    }
 }
