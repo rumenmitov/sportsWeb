@@ -105,17 +105,17 @@ body {
     }
 
     table {
-        margin: 10%;
+        margin: 10% 5% 10% 5%;
         border-collapse: collapse;
-        width: 75%;
-        font-size: 12px;
+        width: 85%;
+        font-size: 10px;
         overflow-wrap: break-word;
     }
     
     td, th {
         border: 1px solid black;
         text-align: left;
-        padding: 2%;
+        padding: 1%;
     }
 
     footer {
@@ -367,7 +367,7 @@ body {
     table {
         margin: 5%;
         border-collapse: collapse;
-        width: 65%;
+        width: 85%;
         font-size: 24px;
         overflow-wrap: break-word;
     }
