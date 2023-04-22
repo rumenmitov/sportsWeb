@@ -284,7 +284,7 @@ body {
     
     a {
         text-decoration: none;
-        font-size: 18px;
+        font-size: 16px;
         margin: 2.5%;
         color: black;
     }
@@ -333,7 +333,7 @@ body {
     }
 
     header nav .links {
-        width: 45%;
+        width: 47.5%;
         padding-top: 7.5%;
     }
 
