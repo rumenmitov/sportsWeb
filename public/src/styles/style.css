@@ -351,6 +351,15 @@ body {
         color: black;
     }
 
+    .buttonp {
+        text-align: center;
+        width: 200px;
+        background-color: lightgrey;
+        padding: 1%;
+        border-radius: 50px;
+        color: black;
+    }
+
     .teams {
         display: flex;
         align-items: center;
